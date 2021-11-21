@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `liste`;
 CREATE TABLE IF NOT EXISTS `liste` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `titre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `couleur` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `titre` varchar(50) NOT NULL,
+  `couleur` varchar(11) NOT NULL,
   `visibilité` int NOT NULL,
   `userid` int NOT NULL,
   PRIMARY KEY (`id`)
@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS `liste` (
 DROP TABLE IF EXISTS `tache`;
 CREATE TABLE IF NOT EXISTS `tache` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `titre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `titre` varchar(50) NOT NULL,
+  `description` varchar(200) DEFAULT NULL,
   `dateFin` datetime DEFAULT NULL,
   `listeid` int NOT NULL,
   PRIMARY KEY (`id`)
@@ -62,10 +62,10 @@ CREATE TABLE IF NOT EXISTS `tache` (
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `prenom` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `mail` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nom` varchar(30) NOT NULL,
+  `prenom` varchar(20) NOT NULL,
+  `mail` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 COMMIT;
