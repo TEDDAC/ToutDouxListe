@@ -1,5 +1,6 @@
 <?php
-require_once("config/Connection.php"),
+require_once("config/Connection.php");
+require_once("class/Liste.php");
 class GWliste {
     Connection $con;
 
