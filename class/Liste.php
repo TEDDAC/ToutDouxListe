@@ -6,6 +6,13 @@ class Liste {
     private $couleur;
     private $visibilite;
 
+    function __construct(int $id, string $titre, string $couleur, int $visibilite){
+        $this->id = $id;
+        $this->titre = $titre;
+        $this->couleur = $couleur;
+        $this->visibilite = $visibilite;
+    }
+
     function set_id($id){
         $this->id = $id;
     }

@@ -1,10 +1,19 @@
 <?php
 
-class Liste {
+class Tache {
     private $id;
     private $titre;
     private $description;
     private $datefin;
+    private $userId;
+
+    function __construct(int $id, string $titre, string $description, DateTime $dateFin,int $userId){
+        $this->id = $id;
+        $this->titre = $titre;
+        $this->description = $description;
+        $this->dateFin = $dateFin;
+        $this->userId = $userId;
+    }
 
     function set_id($id){
         $this->id = $id;
