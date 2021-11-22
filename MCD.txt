@@ -1,7 +1,0 @@
-Tache: id, titre, description, dateFin
-Contenir, 11 Tache, 0N Liste
-Utilisateur: id, nom, prenom, mail, password
-
-:
-Liste: id, titre, couleur, publique
-Posseder, 0N Utilisateur, 11 Liste
