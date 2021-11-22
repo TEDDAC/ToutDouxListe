@@ -5,14 +5,14 @@ class Tache {
     private $titre;
     private $description;
     private $datefin;
-    private $userId;
+    private $listeId;
 
-    function __construct(int $id, string $titre, string $description, DateTime $dateFin,int $userId){
+    function __construct(int $id, string $titre, string $description, DateTime $dateFin,int $listeId){
         $this->id = $id;
         $this->titre = $titre;
         $this->description = $description;
         $this->dateFin = $dateFin;
-        $this->userId = $userId;
+        $this->listeId = $listeId;
     }
 
     function set_id($id){
