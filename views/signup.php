@@ -8,7 +8,7 @@
     <body>
         <div class="">
             <h3>Want to register on ToutDouxListe?</h3>
-            <form method="post" action="">
+            <form method="post" action="index.php?action=signup">
                 <p>
                     <input type="text" name="pseudo" placeholder="Your name" required>
                 </p>
@@ -16,7 +16,10 @@
                     <input type="email" name="email" placeholder="Your email" required>
                 </p>
                 <p>
-                    <input type="text" name="password" placeholder="Password" required>
+                    <input type="password" name="firstpassword" placeholder="Password" required>
+                </p>
+                <p>
+                    <input type="password" name="secondpassword" placeholder="Password" required>
                 </p>
                 <button type="button" name="button">Sign up</button>
             </form>

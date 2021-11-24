@@ -7,12 +7,12 @@
     <body>
         <div class="">
             <h3>Log in to ToutDouxListe</h3>
-            <form method="post" action="">
+            <form method="post" action="index.php?action=login">
                 <p>
                     <input type="email" name="mail" placeholder="Your email" required>
                 </p>
                 <p>
-                    <input type="text" name="password" placeholder="Password" required>
+                    <input type="password" name="password" placeholder="Password" required>
                 </p>
                 <button type="button" name="button">Log in</button>
             </form>
