@@ -4,7 +4,7 @@ class Tache {
     private $id;
     private $titre;
     private $description;
-    private $datefin;
+    private $dateFin;
     private $listeId;
 
     function __construct($id,$titre,$description,$dateFin,$listeId){
@@ -44,7 +44,7 @@ class Tache {
     }
 
     function get_datefin() {
-        return $this->datefin;
+        return $this->dateFin;
     }
 }
 
