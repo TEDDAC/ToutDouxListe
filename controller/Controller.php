@@ -1,12 +1,16 @@
 <?php
 require_once("modele/GWtache.php");
+require_once("config/Connection.php");
 class Controller {
-    GWtache $GWtache;
-    function __construct(){
-        $GWtache = new GWtache();
+    private $GWtache;
+    private $con;
 
-        $liste = GWtache.getListeById(1);
-        require_once("views/showListe.php");
+    function __construct(){
+        $this->con = new Connection("mysql:host=localhost;dbname=toutdouxliste","root","");
+        $this->GWtache = new GWtache($this->con);
+
+        $liste = $this->GWtache->getListeById(2);
+        require("views/showListe.php");
     }
 }
 ?>

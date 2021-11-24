@@ -1,10 +1,9 @@
 <?php
-require_once("config/Connection.php");
-require_once("class/Tache");
+require_once("class/Tache.php");
 class GWtache {
-    Connection $con;
+    private $con;
 
-    function __construct(Connection $con){
+    public function __construct(Connection $con){
         $this->con = $con;
     }
 
@@ -12,13 +11,14 @@ class GWtache {
         $query = "INSERT INTO taches(titre,description,dateFin,)";
     }*/
 
-    function getListeById(int $id):Liste{ //retourne les tache de la liste
-        $query = "SELECT * FROM liste where id=:id";
-        $con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
-        foreach($con->getResults() as $row){
+    public function getListeById(int $id){ //retourne les taches de la liste
+        $query = "SELECT id,titre,description,DATE_FORMAT(dateFin,'%d-%M-%Y %i:%H') dateFin FROM tache where id=:id";
+        $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
+        foreach($this->con->getResults() as $row){
+            var_dump($row);
             $tabTache = new Tache($row["id"],$row["titre"],$row["description"],$row["dateFin"],$id);
         }
         return $tabTache;
-
+    }
 }
 ?>

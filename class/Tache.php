@@ -7,7 +7,7 @@ class Tache {
     private $datefin;
     private $listeId;
 
-    function __construct(int $id, string $titre, string $description, DateTime $dateFin,int $listeId){
+    function __construct($id,$titre,$description,$dateFin,$listeId){
         $this->id = $id;
         $this->titre = $titre;
         $this->description = $description;
