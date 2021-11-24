@@ -11,12 +11,12 @@ class GWtache {
         $query = "INSERT INTO taches(titre,description,dateFin,)";
     }*/
 
-    public function getListeById(int $id){ //retourne les taches de la liste
-        $query = "SELECT id,titre,description,DATE_FORMAT(dateFin,'%d-%M-%Y %i:%H') dateFin FROM tache where id=:id";
+    public function getTaskOf(int $id){ //retourne les taches de la liste
+        $query = "SELECT id,titre,description,DATE_FORMAT(dateFin,'%d-%M-%Y %i:%H') dateFin FROM tache where listeid=:id";
         $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
+        $tabTache = array();
         foreach($this->con->getResults() as $row){
-            var_dump($row);
-            $tabTache = new Tache($row["id"],$row["titre"],$row["description"],$row["dateFin"],$id);
+            $tabTache[] = new Tache($row["id"],$row["titre"],$row["description"],$row["dateFin"],$id);
         }
         return $tabTache;
     }

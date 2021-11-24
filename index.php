@@ -1,4 +1,5 @@
 <?php
 require_once('controller/Controller.php');
-$controller = new Controller();
+require('BDD.php');
+$controller = new Controller($dsn,$user,$pass);
 ?>

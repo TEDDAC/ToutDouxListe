@@ -5,11 +5,11 @@ class Controller {
     private $GWtache;
     private $con;
 
-    function __construct(){
-        $this->con = new Connection("mysql:host=localhost;dbname=toutdouxliste","root","");
+    function __construct($dsn,$user,$pass){
+        $this->con = new Connection($dsn,$user,$pass);
         $this->GWtache = new GWtache($this->con);
 
-        $liste = $this->GWtache->getListeById(2);
+        $liste = $this->GWtache->getTaskOf(2);
         require("views/showListe.php");
     }
 }
