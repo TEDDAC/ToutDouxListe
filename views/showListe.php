@@ -1,5 +1,7 @@
 <?php
+require_once("class/Tache.php");
+
 foreach($liste as $tache){
-    echo $tache.getTitre()."    ".$tache.getdescripbtion()."    ".$tache.dateFin."<br>"
+    echo $tache->get_titre()."    ".$tache->get_descripbtion()."    ".$tache->get_datefin."<br>";
 }
 ?>
