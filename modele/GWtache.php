@@ -1,5 +1,5 @@
 <?php
-require_once("class/Tache.php");
+require_once("modele/class/Tache.php");
 class GWtache {
     private $con;
 
