@@ -2,113 +2,108 @@
 
 class Validation {
 
-    private $data;
-    private $errors = [];
-    private $champslogin = ['mail', 'password', 'subbutton'];
-    private $champssignup = ['username', 'mail', 'password', 'secondpassword', 'subbutton'];
-    private $champstask = ['checkbox', 'categories', 'date', 'subbutton'];
-    private static $champs;
-    private $functionsToDo;
-
-
-    public function __contruct($post_data){
-        this->data = $post_data;
-    }
-
-    public function validateForm(){
-        switch ($data['subbutton']) {
-
-
-
-            //POSER DES QUESTIONS MATHIS !
-
-
-
-            case 'Abandonner':  //case ($v == 1 || $v == 2) ===    case 1:case 2: /* This is called "falling through" the case block. The term exists in most languages implementing a switch statement. */
-            case 'Sauvegarder':
-                $champs = $champstask;
-                $functionsToDo = 1;
-                break;
-            case 'S\'inscrire':
-                $champs2 = $champssignup;
-                $functionsToDo = 2;
-                break;
-            case 'Se connecter':
-                $champs = $champslogin;
-                $functionsToDo = 3;
-                break;
+    static function validateAction($action) {
+        if (!isset($action)) {
+            throw new Exception("Action manquante !");
         }
 
-        foreach (self::$champs as $champ) {
-            if(!array_key_exists($field, $this->data)){
-                trigger_error("Le champs [$field] n'est pas présent dans les données envoyées");
-                return;
+    static function validateFormLogin(string &$name, string &$password, array &$Erreurs){
+            validateName(&$name);
+            validatePassword(&$password);
+        }
+
+    static function validateFormSignup(string &$name, string &$mail, string &$password, string &$confirmpassword, array &$Erreurs){
+            validateName(&$name, array &$Erreurs);
+            validateMail(&$mail, array &$Erreurs);
+            validatePassword(&$password, array &$Erreurs);
+            validateConfirmPassword(&$password, &$confirmpassword, array &$Erreurs);
+        }
+
+    static function validateFormTask(string &$title, string &$description, string &$date, string &$check, array &$Erreurs){
+            validateTaskName(&$title, array &$Erreurs);
+            validateTaskText(&$description, array &$Erreurs);
+            validateDate(&$date, array &$Erreurs);
+            validateCheckbox(&$confirmpassword, array &$Erreurs);
+        }
+
+        /*Functions*/
+
+    private function validateMail(string &$mail, array &$Erreurs){
+        if (isset($mail)) {
+            $Erreurs[] = "Le mail ne peut être vide";
+        } else {
+            if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                $Erreurs[] = "L\'email n\'est pas valide";
+            }
+        }
+    }
+
+    private function validateCheckbox(string &$check, array &$Erreurs){
+        if (isset($check)) {
+            $Erreurs[] = "Le nom d\'utilisateur ne peut être vide";
+        } else {
+            if ($check != 'vrai') {
+                $Erreurs[] = "La valeur de la checkbox est invalide";
+            }
+        }
+    }
+
+    private function validateDate(string &$date, array &$Erreurs){
+        if (isset($date)) {
+            $Erreurs[] = "La date ne peut être vide";
+        } else {
+            if (!checkdate($date)) {
+                $Erreurs[] = "La date n'est pas valide";
+            }
+        }
+    }
+
+
+    private function validatePassword(string &$password, array &$Erreurs){
+        if (isset($password)) {
+            $Erreurs[] = "Le mot de passe ne peut être vide";
+        } else {
+            if (!preg_match('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$', $password)) {
+                $Erreurs[] = "Le mot de passe n'est pas valide";
+            }
+        $password = filter_var($password, FILTER_SANITIZE_STRING);
+        }
+    }
+
+    private function validateName(string &$name, array &$Erreurs){
+        if (isset($name)) {
+            $Erreurs[] = "Le pseudo ne peut être vide";
+        } else {
+            if (!preg_match('^[A-Za-z]{5,30}', $name)) {
+                $Erreurs[] = "Le pseudo n'est pas valide";
+            }
+        $name = filter_var($name, FILTER_SANITIZE_STRING);
+        }
+    }
+
+    private function validateConfirmPassword(string &$password, string &$confirmpassword, array &$Erreurs){
+        if (isset($confirmpassword)) {
+            $Erreurs[] = "Le mot de passe ne peut être vide";
+        } else {
+            if (!($confirmpassword == $password)) {
+                $Erreurs[] = "Le mot de passe n'est pas similaire";
             }
         }
 
-        switch ($functionsToDo) {
-            case 1: //task
-                $this->validateTaskNamePassword();
-                $this->validateTaskText();
-                return $this->errors;
-                break;
+    }
 
-            case 2: //sign
-                $this->validateName();
-                $this->validateMail();
-                $this->validatePassword();
-                $this->validateConfirmPassword();
-                return $this->errors;
-                break;
-
-            case 3: //login
-                $this->validateMail();
-                $this->validatePassword();
-                return $this->errors;
-                break; //le break est là pour la forme le return doit faire sortir
+    private function validateTaskName(string &$title, array &$Erreurs){
+        if (isset($title)) {
+            $Erreurs[] = "Le titre ne peut être vide";
+        } else {
+            if (!preg_match('^[A-Za-z]{5,50}', $title)) {
+                $Erreurs[] = "Le titre n'est pas valide";
             }
-        }
-
-    }
-
-    public function validateMail(){
-
-    }
-
-    public function validatePassword(){
-
-    }
-
-    public function validateName(){
-
-    }
-
-    public function validateConfirmPassword(){
-
-    }
-
-    public function validateTaskNamePassword(){
-
-    }
-
-    public function validateTaskText(){
-
-    }
-
-    public addError(){
-
-    }
-
-
-/*
-Pour plus tard : Lire les results de checkboxs
-    if (isset($_POST['froid'])) {
-        foreach ($variable as $value) {
-
+        $title = filter_var($title, FILTER_SANITIZE_STRING);
         }
     }
-*/
 
-}
-
+    private function validateTaskText(string &$description, array &$Erreurs){
+        $description = filter_var($description, FILTER_SANITIZE_STRING);
+    }
 ?>

@@ -1,12 +1,5 @@
-<?php
-
-if (isset($_POST['subbutton'])) {
-    echo "Formulaire soumis";
-}
-
-?>
-
-<html lang="en" dir="ltr">
+<?php  ?>
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="utf-8">
     <title>Login - Sing Up</title>

@@ -1,5 +1,5 @@
 <?php
-
+/* Test */
 if (isset($_POST['saveandquit']) || isset($_POST['drop'])) {
     echo "Formulaire soumis";
     echo htmlspecialchars($_POST['saveandquit']). ' ' . htmlspecialchars($_POST['drop']);
@@ -7,7 +7,7 @@ if (isset($_POST['saveandquit']) || isset($_POST['drop'])) {
 }
 ?>
 
-<html lang="en" dir="ltr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="utf-8">
     <title>Tâches</title>
@@ -15,7 +15,7 @@ if (isset($_POST['saveandquit']) || isset($_POST['drop'])) {
 <body>
     <div class="taskform">
         <form class="formtask" action="ajoutEditTache.php" method="POST">
-                <input type="checkbox" name="checkbox" value="true">
+                <input type="checkbox" name="checkbox" value="vrai">
                 <input type="text" name="taskname" placeholder="Program a meeting with John">
             <p>
                 <label for="categories">Categories : </label>
