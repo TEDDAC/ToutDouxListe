@@ -9,7 +9,7 @@ class Controller {
         $this->con = new Connection($dsn,$user,$pass);
         $this->GWtache = new GWtache($this->con);
 
-        $liste = $this->GWtache->getTaskOf(2);
+        $liste = $this->GWtache->getTaskOf(3);
         require("views/showListe.php");
     }
 }

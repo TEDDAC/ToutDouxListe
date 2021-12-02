@@ -1,7 +1,14 @@
-<?php
-require_once("modele/class/Tache.php");
+<html>
+<head>
+    <title>Ma page</title>
+</head>
+<body>
+    <?php
+    require_once("modele/class/Tache.php");
 
-foreach($liste as $tache){
-    echo($tache->get_titre().": ".$tache->get_description()." - ".$tache->get_datefin()."<br>");
-}
-?>
+    foreach($liste as $tache){
+        echo($tache->get_titre().": ".$tache->get_description()." - ".$tache->get_datefin()."<br>");
+    }
+    ?>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <?php
-require_once("modele/class/Tache.php");
+require_once("config/Connection.php");
 class GWtache {
     private $con;
 
@@ -10,11 +10,7 @@ class GWtache {
     public function getTaskOf(int $id){ //retourne les taches de la liste
         $query = "SELECT id,titre,description,DATE_FORMAT(dateFin,'%d-%M-%Y %i:%H') dateFin FROM tache where listeid=:id";
         $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
-        $tabTache = array();
-        foreach($this->con->getResults() as $row){
-            $tabTache[] = new Tache($row["id"],$row["titre"],$row["description"],$row["dateFin"],$id);
-        }
-        return $tabTache;
+        return $this->con->getResults();
     }
 
     public function getTask(int $id){ //retourne une tache, sert pour pré remplir les champs quand on édite une tache
@@ -34,7 +30,7 @@ class GWtache {
     }
 
     public function editTask(int $id,string $titre, string $description, string $dateFin){ //insert une tache dans une liste
-        $query = "UPDATE tache (titre,description,dateFin) SET titre=titre,description=:description,dateFin=STR_TO_DATE(:dateFin,'%d-%M-%Y %i:%H') WHERE id=:id";
+        $query = "UPDATE tache SET titre=titre,description=:description,dateFin=STR_TO_DATE(:dateFin,'%d-%M-%Y %i:%H') WHERE id=:id";
         $this->con->executeQuery($query,array(
             ":titre"=>array($titre,PDO::PARAM_STRING),
             ":description"=>array($description,PDO::PARAM_STRING),
