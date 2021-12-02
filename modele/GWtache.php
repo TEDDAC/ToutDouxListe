@@ -17,7 +17,7 @@ class GWtache {
         return $tabTache;
     }
 
-    public function getTask(int $id){ //retourne une tache, sert pour pré remplir les champs quand on édite une tache
+    /*public function getTask(int $id){ //retourne une tache, sert pour pré remplir les champs quand on édite une tache
         $query = "SELECT id,titre,description,DATE_FORMAT(dateFin,'%d-%M-%Y %i:%H') dateFin FROM tache where listeid=:id";
         $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)))
         return $this->con->getResults();
@@ -48,6 +48,6 @@ class GWtache {
         $this->con->executeQuery($query,array(
             ":id"=>array($id,PDO::PARAM_INT)
         ));
-    }
+    }*/
 }
 ?>
