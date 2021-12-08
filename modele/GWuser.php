@@ -1,10 +1,10 @@
 <?php
-require_once("config/Connection.php");
 class GWtache {
     private $con;
 
-    public function __construct(Connection $con){
-        $this->con = $con;
+    public function __construct(){
+		require('BDD.php');
+		$this->con = new Controller($dsn,$user,$pass);
     }
 
     public function getUser(int $id){

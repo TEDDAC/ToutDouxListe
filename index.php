@@ -1,5 +1,6 @@
 <?php
 require_once('controller/Controller.php');
-require('BDD.php');
-$controller = new Controller($dsn,$user,$pass);
+require_once(__DIR__.'/config/Autoload.php');
+Autoload::charger();
+$controller = new Controller();
 ?>

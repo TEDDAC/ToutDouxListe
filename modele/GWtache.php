@@ -1,10 +1,10 @@
 <?php
-require_once("config/Connection.php");
 class GWtache {
     private $con;
 
-    public function __construct(Connection $con){
-        $this->con = $con;
+    public function __construct(){
+		require('BDD.php');
+		$this->con = new Controller($dsn,$user,$pass);
     }
 
     public function getTaskOf(int $id){ //retourne les taches de la liste
@@ -18,8 +18,10 @@ class GWtache {
 
     public function getTask(int $id){ //retourne une tache, sert pour pré remplir les champs quand on édite une tache
         $query = "SELECT id,titre,description,DATE_FORMAT(dateFin,'%d-%M-%Y %i:%H') dateFin FROM tache where listeid=:id";
-        $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)))
-        return $this->con->getResults();
+        $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
+		$result = $this->con->getResults();
+		$tache = $result[0];
+		return new Tache($liste["id"],$liste["titre"],$liste["dateFin"],$liste["listeid"]);
     }
 
     public function insertTaskIn(string $titre, string $description, string $dateFin, int $idListe){ //insert une tache dans une liste

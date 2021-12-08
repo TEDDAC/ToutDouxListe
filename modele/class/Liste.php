@@ -5,12 +5,14 @@ class Liste {
     private $titre;
     private $couleur;
     private $visibilite;
+	private $userid;
 
     function __construct(int $id, string $titre, string $couleur, int $visibilite){
         $this->id = $id;
         $this->titre = $titre;
         $this->couleur = $couleur;
         $this->visibilite = $visibilite;
+		$this->userid = $userid;
     }
 
     function set_id($id){
@@ -44,6 +46,14 @@ class Liste {
     function get_visibilite() {
         return $this->visibilite;
     }
+
+	function get_userid(){
+		return $this->userid;
+	}
+
+	function set_userid($userid){
+		$this->userid = $userid;
+	}
 }
 
 ?>
