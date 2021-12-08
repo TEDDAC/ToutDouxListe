@@ -1,5 +1,6 @@
 <?php
 require_once("config/Connection.php");
+require_once("modele/class/Liste.php");
 class GWliste {
     private Connection $con;
 
@@ -10,7 +11,11 @@ class GWliste {
 	public function getListOf(int $id){ //retourne les listes de l'utilisateur id (si id = 0 est vide, la fonction retournera les listes publiques)
 		$query = "SELECT id,titre,description,couleur,userid FROM liste where userid=:id";
 		$this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
-		return $this->con->getResults();
+		$tab = [];
+		foreach ($this->con->getResults() as $liste) {
+			$tab[] = new Liste($liste["id"],$liste["titre"],$liste["couleur"],$liste["visibilite"],$liste["userid"]);
+		}
+		return $tab;
 	}
 
 	public function getPublicList(){ //retourne les listes de l'utilisateur id (si id = 0 est vide, la fonction retournera les listes publiques)
