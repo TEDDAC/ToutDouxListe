@@ -5,7 +5,7 @@ class ControllerVisiteur
 	function __construct()
 	{
 		if(isset($_GET["action"]))
-			$action = Validation::ValidateString($_GET["action"]);
+			$action = Validation::validateString($_GET["action"]);
 		else $action = NULL;
 
 		switch ($action) {
