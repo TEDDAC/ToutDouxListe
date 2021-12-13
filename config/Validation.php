@@ -66,7 +66,7 @@ class Validation {
             if (!preg_match('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$', $password)) {
                 $Erreurs[] = "Le mot de passe n'est pas valide";
             }
-        $password = filter_var($password, FILTER_SANITIZE_STRING);
+            &$password = validateString(&$password);
         }
     }
 
@@ -77,7 +77,7 @@ class Validation {
             if (!preg_match('^[A-Za-z]{5,25}', $name)) {
                 $Erreurs[] = "Le pseudo n'est pas valide";
             }
-        $name = filter_var($name, FILTER_SANITIZE_STRING);
+            &$name = validateString(&$name);
         }
     }
 
@@ -99,11 +99,15 @@ class Validation {
             if (!preg_match('^[A-Za-z]{5,50}', $title)) {
                 $Erreurs[] = "Le titre n'est pas valide";
             }
-        $title = filter_var($title, FILTER_SANITIZE_STRING);
+            &$title = validateString(&$title);
         }
     }
 
     private function validateTaskText(string &$description, array &$Erreurs){
-        $description = filter_var($description, FILTER_SANITIZE_STRING);
+        &$description = validateString(&$description);
+    }
+
+    private function validateString(string &$chaine){
+        return &$chaine = filter_var($chaine, FILTER_SANITIZE_STRING);
     }
 ?>
