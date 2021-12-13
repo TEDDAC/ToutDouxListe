@@ -74,7 +74,7 @@ class Validation {
         if (isset($name)) {
             $Erreurs[] = "Le pseudo ne peut être vide";
         } else {
-            if (!preg_match('^[A-Za-z]{5,30}', $name)) {
+            if (!preg_match('^[A-Za-z]{5,25}', $name)) {
                 $Erreurs[] = "Le pseudo n'est pas valide";
             }
         $name = filter_var($name, FILTER_SANITIZE_STRING);
