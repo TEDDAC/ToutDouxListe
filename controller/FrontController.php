@@ -12,7 +12,7 @@ class FrontController {
 			else $ctrl = new ControllerVisiteur();
 
 		} catch (Exception $e) {
-
+			require("views/erreur.php");
 		}
 
     }

@@ -5,15 +5,13 @@
 </head>
 <body>
     <div class="error">
-        <h3>Aie !</h3>
+        <h3>Aie !  :'(</h3>
         <p>
-            Il semblerai que :
-            <?php foreach ($Erreurs as $erreur) {
-                    echo '<pre>' . $erreur .'<\pre>';
-                }
-            ?>
+            Il semblerai que : <?= $e->getMessage() ?>
         </p>
+		<?php if(isset($_SERVER['HTTP_REFERER'])){ ?>
         <a href="<?= $_SERVER['HTTP_REFERER'] ?>">Retour</a>
+		<?php } ?>
     </div>
 </body>
 </html>

@@ -6,30 +6,31 @@ class ControllerVisiteur
 	{
 		if(isset($_GET["action"]))
 			$action = Validation::validateString($_GET["action"]);
-		else $action = NULL;
+		else throw new Exception("Vous n'avez demander aucune action.");
 
 		switch ($action) {
 			case 'showPublicList':
 				$this->showPublicList();
 				break;
+			case 'showTaskOf':
+				$this->showTaskOf();
+				break;
 			default:
-				$Erreurs = array("Erreur 404: l'action ".$action." n'existe pas.");
-				require("views/erreur.php");
+				throw new Exception("L'action ".$action." n'existe pas !");
 				break;
 		}
 	}
 
-	public function showliste()
+	public function showPublicList()
 	{
-		$liste = ModelVisiteur::getTaskOf();
+		$listes = ModelVisiteur::getPublicList();
 		require("views/showList.php");
 	}
 
-	public function showPublicList()
+	public function showTaskOf()
 	{
-		$model = new ModelVisiteur();
-		$listes = ModelVisiteur::getPublicList();
-		require("views/showList.php");
+		$taches = ModelVisiteur::getTaskOf();
+		require("views/showTask.php");
 	}
 }
 

@@ -108,8 +108,8 @@ class Validation {
 		$description = validateString($description);
 	}
 
-	public static function validateString(string &$chaine){
-		return $chaine = filter_var($chaine, FILTER_SANITIZE_STRING);
+	public static function validateString(string $chaine){
+		return filter_var($chaine, FILTER_SANITIZE_STRING);
 	}
 }
 	?>

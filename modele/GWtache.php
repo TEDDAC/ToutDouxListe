@@ -4,24 +4,24 @@ class GWtache {
 
     public function __construct(){
 		require('BDD.php');
-		$this->con = new Controller($dsn,$user,$pass);
+		$this->con = new Connection($dsn,$user,$pass);
     }
 
     public function getTaskOf(int $id){ //retourne les taches de la liste
-        $query = "SELECT id,titre,description,DATE_FORMAT(dateFin,'%d-%M-%Y %i:%H') dateFin FROM tache where listeid=:id";
+        $query = "SELECT id,titre,description,DATE_FORMAT(dateFin,'%d-%M-%Y %i:%H') dateFin,listeid FROM tache where listeid=:id";
         $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
-		foreach ($this->con->getResults() as $liste) {
+		foreach ($this->con->getResults() as $tache) {
 			$tab[] = new Tache($tache["id"],$tache["titre"],$tache["description"],$tache["dateFin"],$tache["listeid"]);
 		}
 		return $tab;
     }
 
     public function getTask(int $id){ //retourne une tache, sert pour pré remplir les champs quand on édite une tache
-        $query = "SELECT id,titre,description,DATE_FORMAT(dateFin,'%d-%M-%Y %i:%H') dateFin FROM tache where listeid=:id";
+        $query = "SELECT id,titre,description,DATE_FORMAT(dateFin,'%d-%M-%Y %i:%H') dateFin,listeid FROM tache where listeid=:id";
         $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
 		$result = $this->con->getResults();
 		$tache = $result[0];
-		return new Tache($liste["id"],$liste["titre"],$liste["dateFin"],$liste["listeid"]);
+		return new Tache($tache["id"],$tache["titre"],$tache["dateFin"],$tache["listeid"]);
     }
 
     public function insertTaskIn(string $titre, string $description, string $dateFin, int $idListe){ //insert une tache dans une liste

@@ -4,7 +4,7 @@ class GWtache {
 
     public function __construct(){
 		require('BDD.php');
-		$this->con = new Controller($dsn,$user,$pass);
+		$this->con = new Connection($dsn,$user,$pass);
     }
 
     public function getUser(int $id){

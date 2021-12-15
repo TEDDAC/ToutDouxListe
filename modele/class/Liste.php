@@ -3,14 +3,16 @@
 class Liste {
     private $id;
     private $titre;
-    private $couleur;
+    private $description;
+	private $couleur;
     private $visibilite;
 	private $userid;
 
-    function __construct(int $id, string $titre, string $couleur, int $visibilite,$userid){
+    function __construct(int $id, string $titre, $description,string $couleur, int $visibilite,$userid){
         $this->id = $id;
         $this->titre = $titre;
         $this->couleur = $couleur;
+		$this->description = $description;
         $this->visibilite = $visibilite;
 		$this->userid = $userid;
     }
@@ -31,12 +33,20 @@ class Liste {
         return $this->titre;
     }
 
-    function set_couleur($couleur){
-        $this->couleur = $couleur;
+    function set_description($description){
+        $this->description = $description;
     }
 
-    function get_couleur() {
-        return $this->couleur;
+	function get_couleur(){
+		return $this->couleur;
+	}
+
+	function set_couleur(string $couleur){
+		$this->couleur = $couleur;
+	}
+
+    function get_description() {
+        return $this->description;
     }
 
     function set_visibilite($visibilite){
