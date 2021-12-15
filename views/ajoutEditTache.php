@@ -14,27 +14,19 @@ if (isset($_POST['saveandquit']) || isset($_POST['drop'])) {
 </head>
 <body>
     <div class="taskform">
-        <form class="formtask" action="ajoutEditTache.php" method="POST">
+        <form class="formtask" action="index.php?action=addTask&idListe=<?= $_GET["idListe"] ?>" method="POST">
                 <input type="checkbox" name="checkbox" value="vrai">
-                <input type="text" name="taskname" placeholder="Program a meeting with John">
-            <p>
-                <label for="categories">Categories : </label>
-                <select name="categories">
-                    <option value="house">House</option>
-                    <option value="school">School</option>
-                    <option value="job">Job</option>
-                </select>
-            </p>
+                <input type="text" name="titre" placeholder="Program a meeting with John">
             <p>
                 <label for="date">Date : </label>
-                <input type="date" name="date">
+                <input type="date" name="dateFin">
             </p>
             <p>
-                <textarea name="notes" rows="8" cols="50"></textarea>
+                <textarea name="description" rows="8" cols="50"></textarea>
             </p>
             <p>
-                <input type="submit" name="subbutton" value="Abandonner">
                 <input type="submit" name="subbutton" value="Sauvegarder">
+				<a href="<?= isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "index.php?action=showPublicList" ?>">Retour</a>
             </p>
         </form>
     </div>
