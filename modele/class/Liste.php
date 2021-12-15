@@ -7,7 +7,7 @@ class Liste {
     private $visibilite;
 	private $userid;
 
-    function __construct(int $id, string $titre, string $couleur, int $visibilite){
+    function __construct(int $id, string $titre, string $couleur, int $visibilite,$userid){
         $this->id = $id;
         $this->titre = $titre;
         $this->couleur = $couleur;

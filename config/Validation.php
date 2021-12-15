@@ -29,7 +29,7 @@ class Validation {
 
 	/*Functions*/
 
-	private function validateMail(string &$mail, array &$Erreurs){
+	public function validateMail(string &$mail, array &$Erreurs){
 		if (isset($mail)) {
 			$Erreurs[] = "Le mail ne peut être vide";
 		} else {
@@ -39,7 +39,7 @@ class Validation {
 		}
 	}
 
-	private function validateCheckbox(string &$check, array &$Erreurs){
+	public function validateCheckbox(string &$check, array &$Erreurs){
 		if (isset($check)) {
 			$Erreurs[] = "Le nom d\'utilisateur ne peut être vide";
 		} else {
@@ -49,7 +49,7 @@ class Validation {
 		}
 	}
 
-	private function validateDate(string &$date, array &$Erreurs){
+	public function validateDate(string &$date, array &$Erreurs){
 		if (isset($date)) {
 			$Erreurs[] = "La date ne peut être vide";
 		} else {
@@ -60,7 +60,7 @@ class Validation {
 	}
 
 
-	private function validatePassword(string &$password, array &$Erreurs){
+	public function validatePassword(string &$password, array &$Erreurs){
 		if (isset($password)) {
 			$Erreurs[] = "Le mot de passe ne peut être vide";
 		} else {
@@ -71,18 +71,18 @@ class Validation {
 		}
 	}
 
-	private function validateName(string &$name, array &$Erreurs){
+	public function validateName(string &$name, array &$Erreurs){
 		if (isset($name)) {
 			$Erreurs[] = "Le pseudo ne peut être vide";
 		} else {
 			if (!preg_match('^[A-Za-z]{5,25}', $name)) {
 				$Erreurs[] = "Le pseudo n'est pas valide";
 			}
-			$name = validateString(&$name);
+			$name = validateString($name);
 		}
 	}
 
-	private function validateConfirmPassword(string &$password, string &$confirmpassword, array &$Erreurs){
+	public function validateConfirmPassword(string &$password, string &$confirmpassword, array &$Erreurs){
 		if (isset($confirmpassword)) {
 			$Erreurs[] = "Le mot de passe ne peut être vide";
 		} else {
@@ -93,22 +93,23 @@ class Validation {
 
 	}
 
-	private function validateTaskName(string &$title, array &$Erreurs){
+	public function validateTaskName(string &$title, array &$Erreurs){
 		if (isset($title)) {
 			$Erreurs[] = "Le titre ne peut être vide";
 		} else {
 			if (!preg_match('^[A-Za-z]{5,50}', $title)) {
 				$Erreurs[] = "Le titre n'est pas valide";
 			}
-			&$title = validateString(&$title);
+			$title = validateString($title);
 		}
 	}
 
-	private function validateTaskText(string &$description, array &$Erreurs){
-		&$description = validateString(&$description);
+	public function validateTaskText(string $description, array &$Erreurs){
+		$description = validateString($description);
 	}
 
-	private static function validateString(string &$chaine){
-		return &$chaine = filter_var($chaine, FILTER_SANITIZE_STRING);
+	public static function validateString(string &$chaine){
+		return $chaine = filter_var($chaine, FILTER_SANITIZE_STRING);
 	}
+}
 	?>

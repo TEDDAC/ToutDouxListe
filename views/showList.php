@@ -4,10 +4,10 @@
 </head>
 <body>
     <?php
-    require_once("modele/class/Tache.php");
-
-    foreach($liste as $list){
-        echo($list->get_titre().": ".$list->get_description()."<br>");
+    foreach($listes as $liste){
+	?>
+        <a href="index.php?action=showTaskOf&id=<?= $liste->get_id() ?>"><?= $liste->get_titre() ?></a><br>
+	<?php
     }
     ?>
 </body>

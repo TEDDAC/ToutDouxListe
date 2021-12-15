@@ -13,22 +13,23 @@ class ControllerVisiteur
 				$this->showPublicList();
 				break;
 			default:
-				$this->showPublicList();
+				$Erreurs = array("Erreur 404: l'action ".$action." n'existe pas.");
+				require("views/erreur.php");
 				break;
 		}
 	}
 
-	function showliste()
+	public function showliste()
 	{
 		$liste = ModelVisiteur::getTaskOf();
-		require("views/showListe.php");
+		require("views/showList.php");
 	}
 
-	function showPublicList()
+	public function showPublicList()
 	{
 		$model = new ModelVisiteur();
-		$liste = $model.getPublicList();
-		require("show");
+		$listes = ModelVisiteur::getPublicList();
+		require("views/showList.php");
 	}
 }
 

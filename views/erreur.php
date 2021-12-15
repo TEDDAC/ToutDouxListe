@@ -9,13 +9,11 @@
         <p>
             Il semblerai que :
             <?php foreach ($Erreurs as $erreur) {
-                    echo '<pre>' . $erreur .'<\pre>'
+                    echo '<pre>' . $erreur .'<\pre>';
                 }
             ?>
         </p>
-        <button type="button" name="button">
-            <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a>
-        </button>
+        <a href="<?= $_SERVER['HTTP_REFERER'] ?>">Retour</a>
     </div>
 </body>
 </html>
