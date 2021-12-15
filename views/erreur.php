@@ -9,9 +9,7 @@
         <p>
             Il semblerai que : <?= $e->getMessage() ?>
         </p>
-		<?php if(isset($_SERVER['HTTP_REFERER'])){ ?>
-        <a href="<?= $_SERVER['HTTP_REFERER'] ?>">Retour</a>
-		<?php } ?>
+        <a href="<?= isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "index.php?action=showPublicList" ?>">Retour</a>
     </div>
 </body>
 </html>
