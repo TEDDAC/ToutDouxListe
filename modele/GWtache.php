@@ -25,11 +25,11 @@ class GWtache {
     }
 
     public function insertTaskIn(string $titre, string $description, string $dateFin, int $idListe){ //insert une tache dans une liste
-        $query = "INSERT INTO tache (titre,description,dateFin,listeid) VALUES (:titre,:description,STR_TO_DATE(:dateFin,'%d-%M-%Y %i:%H'),:listeid)";
+		$query = "INSERT INTO tache (titre,description,dateFin,listeid) VALUES (:titre,:description,STR_TO_DATE(:dateFin,'%Y-%m-%d %H:%i'),:listeid)";
         $this->con->executeQuery($query,array(
             ":titre"=>array($titre,PDO::PARAM_STR),
             ":description"=>array($description,PDO::PARAM_STR),
-            ":dateFin"=>array($dateFin,PDO::PARAM_STR),
+            ":dateFin"=>array(str_replace("T"," ",$dateFin),PDO::PARAM_STR),
             ":listeid"=>array($idListe,PDO::PARAM_INT)
         ));
     }

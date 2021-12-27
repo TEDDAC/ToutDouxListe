@@ -4,10 +4,12 @@ class ControllerVisiteur
 
 	function __construct()
 	{
-		if(isset($_GET["action"]))
-			$action = Validation::validateString($_GET["action"]);
-		else throw new Exception("Vous n'avez demander aucune action.");
+		if(!isset($_GET["action"])){
+			$this->showPublicList();
+			return;
+		}
 
+		$action = Validation::validateString($_GET["action"]);
 		switch ($action) {
 			case 'showPublicList':
 				$this->showPublicList();
@@ -20,6 +22,11 @@ class ControllerVisiteur
 				break;
 			case 'addTask':
 				$this->addTaskTo();
+				break;
+			case 'removeTask':
+				$this->removeTask();
+				break;
+			case 'editTask':
 				break;
 			default:
 				throw new Exception("L'action ".$action." n'existe pas !");
@@ -40,14 +47,17 @@ class ControllerVisiteur
 	}
 
 	public function showInsertTaskForm(){
-		if(!isset($_GET["idListe"]) || $_GET["idListe"] == NULL) throw new Exception("Il n'y a aucune liste cible.");
 		require("views/ajoutEditTache.php");
 	}
 
 	public function addTaskTo(){
-		if(!isset($_GET["idListe"]) || $_GET["idListe"] == NULL) throw new Exception("Il n'y a aucune liste cible.");
 		ModelVisiteur::addTaskTo();
 		header('Location: index.php?action=showTaskOf&id='.$_GET["idListe"]);
+	}
+
+	public function removeTask(){
+		ModelVisiteur::removeTask();
+		header('Location: '.$_SERVER['HTTP_REFERER']);
 	}
 }
 

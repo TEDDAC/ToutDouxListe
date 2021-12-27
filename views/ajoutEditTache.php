@@ -1,12 +1,3 @@
-<?php
-/* Test */
-if (isset($_POST['saveandquit']) || isset($_POST['drop'])) {
-    echo "Formulaire soumis";
-    echo htmlspecialchars($_POST['saveandquit']). ' ' . htmlspecialchars($_POST['drop']);
-    echo '<pre>'. var_dump($_POST) . '</pre>';
-}
-?>
-
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="utf-8">
@@ -19,7 +10,7 @@ if (isset($_POST['saveandquit']) || isset($_POST['drop'])) {
                 <input type="text" name="titre" placeholder="Program a meeting with John">
             <p>
                 <label for="date">Date : </label>
-                <input type="date" name="dateFin">
+                <input type="datetime-local" name="dateFin">
             </p>
             <p>
                 <textarea name="description" rows="8" cols="50"></textarea>
