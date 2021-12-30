@@ -29,6 +29,9 @@ class ControllerVisiteur
 			case 'editTask':
 				$this->editTaskForm();
 				break;
+			case 'updateTask':
+				$this->editTask();
+				break;
 			default:
 				throw new Exception("L'action ".$action." n'existe pas !");
 				break;
@@ -64,6 +67,11 @@ class ControllerVisiteur
 	public function editTaskForm(){
 		$tache = ModelVisiteur::getTask();
 		require("views/ajoutEditTache.php");
+	}
+
+	public function editTask(){
+		$tache = ModelVisiteur::editTask();
+		header('Location: index.php?action=showTaskOf&id='.$tache->get_listeId());
 	}
 }
 

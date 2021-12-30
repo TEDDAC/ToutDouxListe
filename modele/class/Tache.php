@@ -41,11 +41,11 @@ class Tache {
         return $this->description;
     }
 
-    function set_datefin($datefin){
-        $this->datefin = $datefin;
+    function set_dateFin($dateFin){
+        $this->dateFin = $dateFin;
     }
 
-    function get_datefin() {
+    function get_dateFin() {
         return $this->dateFin;
     }
 

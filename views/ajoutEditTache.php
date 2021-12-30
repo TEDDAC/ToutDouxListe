@@ -6,7 +6,7 @@
 <body>
     <div class="taskform">
         <form class="formtask" action="index.php?action=<?= isset($tache) ? "updateTask" : "addTask" ?>&<?= isset($tache) ? "id=".$tache->get_id() : "idListe=".$_GET["idListe"] ?>" method="POST">
-                <input type="checkbox" name="checkbox" value="vrai" <?php if(isset($tache)){ if($tache->isDone()) echo "checked"; } ?>>
+                <input type="checkbox" name="fait" value="vrai" <?php if(isset($tache)){ if($tache->isDone()) echo "checked"; } ?>>
                 <input type="text" name="titre" placeholder="Program a meeting with John" <?php if(isset($tache)) echo("value=".$tache->get_titre()); ?>>
             <p>
                 <label for="date">Date : </label>
