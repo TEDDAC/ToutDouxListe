@@ -5,15 +5,15 @@
 </head>
 <body>
     <div class="taskform">
-        <form class="formtask" action="index.php?action=addTask&idListe=<?= $_GET["idListe"] ?>" method="POST">
-                <input type="checkbox" name="checkbox" value="vrai">
-                <input type="text" name="titre" placeholder="Program a meeting with John">
+        <form class="formtask" action="index.php?action=<?= isset($tache) ? "updateTask" : "addTask" ?>&<?= isset($tache) ? "id=".$tache->get_id() : "idListe=".$_GET["idListe"] ?>" method="POST">
+                <input type="checkbox" name="checkbox" value="vrai" <?php if(isset($tache)){ if($tache->isDone()) echo "checked"; } ?>>
+                <input type="text" name="titre" placeholder="Program a meeting with John" <?php if(isset($tache)) echo("value=".$tache->get_titre()); ?>>
             <p>
                 <label for="date">Date : </label>
-                <input type="datetime-local" name="dateFin">
+                <input type="datetime-local" name="dateFin" <?php if(isset($tache)) echo('value="'.$tache->get_dateFin().'"'); ?>>
             </p>
             <p>
-                <textarea name="description" rows="8" cols="50"></textarea>
+                <textarea name="description" rows="8" cols="50"><?= isset($tache) ? $tache->get_description() : "" ?></textarea>
             </p>
             <p>
                 <input type="submit" name="subbutton" value="Sauvegarder">

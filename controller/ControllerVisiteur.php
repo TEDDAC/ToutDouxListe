@@ -27,6 +27,7 @@ class ControllerVisiteur
 				$this->removeTask();
 				break;
 			case 'editTask':
+				$this->editTaskForm();
 				break;
 			default:
 				throw new Exception("L'action ".$action." n'existe pas !");
@@ -58,6 +59,11 @@ class ControllerVisiteur
 	public function removeTask(){
 		ModelVisiteur::removeTask();
 		header('Location: '.$_SERVER['HTTP_REFERER']);
+	}
+
+	public function editTaskForm(){
+		$tache = ModelVisiteur::getTask();
+		require("views/ajoutEditTache.php");
 	}
 }
 

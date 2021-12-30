@@ -36,6 +36,16 @@ class ModelVisiteur
 		if(!isset($_GET["id"]) || $_GET["id"] == NULL) throw new Exception("Il n'y a aucune tache spécifié.");
 		$gwTache->deleteTask(filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT));
 	}
+
+	public static function getTask(){
+		$gwTache = new GWtache();
+		$gwListe = new GWliste();
+		if(!isset($_GET["id"]) || $_GET["id"] == NULL) throw new Exception("Il n'y a aucune tache spécifié.");
+		$tache = $gwTache->getTask(filter_var($_GET["id"], FILTER_SANITIZE_NUMBER_INT));
+		$liste = $gwListe->getList($tache->get_listeId());
+		if($liste->get_visibilite() == 0) throw new Exception("Vous n'avez pas accès à cette liste !");
+		return $tache;
+	}
 }
 
 ?>

@@ -4,13 +4,15 @@ class Tache {
     private $id;
     private $titre;
     private $description;
+	private $fait;
     private $dateFin;
     private $listeId;
 
-    function __construct($id,$titre,$description,$dateFin,$listeId){
+    function __construct($id,$titre,$description,$fait,$dateFin,$listeId){
         $this->id = $id;
         $this->titre = $titre;
         $this->description = $description;
+		$this->fait = $fait;
         $this->dateFin = $dateFin;
         $this->listeId = $listeId;
     }
@@ -46,6 +48,22 @@ class Tache {
     function get_datefin() {
         return $this->dateFin;
     }
+
+	function isDone(){
+		return $this->fait;
+	}
+
+	function set_fait($fait){
+		$this->fait = $fait;
+	}
+
+	function get_listeId(){
+		return $this->listeId;
+	}
+
+	function set_listeId($listeId){
+		$this->listeId = $listeId;
+	}
 }
 
 ?>
