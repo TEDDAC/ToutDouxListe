@@ -13,21 +13,13 @@ class ModelVisiteur
 
 	public static function getTaskOf(){
 		$gwTache = new GWtache();
-		$gwListe = new GWliste();
-		if(!isset($_GET["idListe"]) || $_GET["idListe"] == NULL) throw new Exception("Il n'y a aucune liste cible.");
-		$_GET["idListe"] = filter_var($_GET["idListe"], FILTER_SANITIZE_NUMBER_INT);
-		$liste = $gwListe->getList($_GET["idListe"]);
-		if($liste->get_visibilite() == 0){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
+		$liste = ModelVisiteur::getList();
 		return $gwTache->getTaskOf($_GET["idListe"]);
 	}
 
 	public static function addTaskTo(){ //AUCUNE VALIDATION DES CHAMPS N'EST FAITE: A FAIRE+++++++++++++++++++++
 		$gwTache = new GWtache();
-		$gwListe = new GWliste();
-		if(!isset($_GET["idListe"]) || $_GET["idListe"] == NULL) throw new Exception("Il n'y a aucune liste cible.");
-		$_GET["idListe"] = filter_var($_GET["idListe"], FILTER_SANITIZE_NUMBER_INT);
-		$liste = $gwListe->getList($_GET["idListe"]);
-		if($liste->get_visibilite() == 0){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
+		$liste = ModelVisiteur::getList();
 		$gwTache->insertTaskIn($_POST["titre"], $_POST["description"], $_POST["dateFin"], $_GET["idListe"], (isset($_POST["fait"]) && $_POST["fait"]) ? true : false);
 	}
 
@@ -61,6 +53,15 @@ class ModelVisiteur
 		$tache->set_fait((isset($_POST["fait"]) && $_POST["fait"]) ? true : false);
 		$gwTache->editTask($tache->get_id(),$tache->get_titre(),$tache->get_description(),$tache->get_dateFin(),$tache->isDone());
 		return $tache;
+	}
+
+	public static function getList(){
+		$gwListe = new GWliste();
+		if(!isset($_GET["idListe"]) || $_GET["idListe"] == NULL) throw new Exception("Il n'y a aucune liste cible.");
+		$_GET["idListe"] = filter_var($_GET["idListe"], FILTER_SANITIZE_NUMBER_INT);
+		$liste = $gwListe->getList($_GET["idListe"]);
+		if($liste->get_visibilite() == 0){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
+		return $liste;
 	}
 }
 

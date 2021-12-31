@@ -3,6 +3,8 @@
     <title>Ma page</title>
 </head>
 <body>
+	<h2><?= $liste->get_titre() ?></h2>
+	<p><?= $liste->get_description() ?></p>
     <?php
     foreach($taches as $tache){
 		if($tache->isDone())
