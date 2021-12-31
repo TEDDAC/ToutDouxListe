@@ -16,7 +16,7 @@
 		<br>
     <?php }
     ?>
-	<a href="index.php?action=insertTaskForm&idListe=<?= $_GET["id"] ?>">Ajouter une tache</a><br>
+	<a href="index.php?action=insertTaskForm&idListe=<?= $_GET["idListe"] ?>">Ajouter une tache</a><br>
 	<a href="index.php?action=showPublicList">Accueil</a>
 </body>
 </html>

@@ -47,6 +47,7 @@ class ControllerVisiteur
 	public function showTaskOf()
 	{
 		$taches = ModelVisiteur::getTaskOf();
+		//$liste = ModelVisiteur::getList();
 		require("views/showTask.php");
 	}
 
@@ -56,7 +57,7 @@ class ControllerVisiteur
 
 	public function addTaskTo(){
 		ModelVisiteur::addTaskTo();
-		header('Location: index.php?action=showTaskOf&id='.$_GET["idListe"]);
+		header('Location: index.php?action=showTaskOf&idListe='.$_GET["idListe"]);
 	}
 
 	public function removeTask(){
@@ -71,7 +72,7 @@ class ControllerVisiteur
 
 	public function editTask(){
 		$tache = ModelVisiteur::editTask();
-		header('Location: index.php?action=showTaskOf&id='.$tache->get_listeId());
+		header('Location: index.php?action=showTaskOf&idListe='.$tache->get_listeId());
 	}
 }
 

@@ -6,7 +6,7 @@
     <?php
     foreach($listes as $liste){
 	?>
-        <a href="index.php?action=showTaskOf&id=<?= $liste->get_id() ?>"><?= $liste->get_titre() ?></a><br>
+        <a href="index.php?action=showTaskOf&idListe=<?= $liste->get_id() ?>"><?= $liste->get_titre() ?></a><br>
 	<?php
     }
     ?>
