@@ -69,6 +69,17 @@ class ModelVisiteur
 		$gwListe->insertListIn($_POST["titre"], $_POST["description"], 1, NULL);
 		return $gwListe->getLastIdInserted();
 	}
+
+	public static function deletePublicList(){
+		$gwListe = new GWliste();
+		$gwTache = new GWtache();
+		if(!isset($_GET["idListe"]) || $_GET["idListe"] == NULL) throw new Exception("Il n'y a aucune liste cible.");
+		$_GET["idListe"] = filter_var($_GET["idListe"], FILTER_SANITIZE_NUMBER_INT);
+		$liste = $gwListe->getList($_GET["idListe"]);
+		if($liste->get_visibilite() == 0){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
+		$gwTache->deleteAllTaskOf($_GET["idListe"]);
+		$gwListe->deleteList($_GET["idListe"]);
+	}
 }
 
 ?>

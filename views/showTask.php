@@ -19,6 +19,17 @@
     <?php }
     ?>
 	<a href="index.php?action=insertTaskForm&idListe=<?= $_GET["idListe"] ?>">Ajouter une tache</a><br>
+
+	<button type="button" name="confirmListDelete" onclick="confirmListDelete()">Supprimer la liste</button><br>
+	<script type="text/javascript">
+		function confirmListDelete(){
+			if(confirm("Êtes vous sûr de vouloir supprimer cette liste ? Cette action est irréversible et supprimera toutes les tâches de la liste.")){
+				window.location.replace("index.php?action=deletePublicList&idListe=<?= $liste->get_id() ?>");
+			}
+		}
+	</script>
+
+
 	<a href="index.php?action=showPublicList">Accueil</a>
 </body>
 </html>

@@ -38,6 +38,9 @@ class ControllerVisiteur
 			case 'addPublicList':
 				$this->createPublicList();
 				break;
+			case 'deletePublicList':
+				$this->deletePublicList();
+				break;
 			default:
 				throw new Exception("L'action ".$action." n'existe pas !");
 				break;
@@ -84,6 +87,11 @@ class ControllerVisiteur
 	public function createPublicList(){
 		$idListe = ModelVisiteur::createPublicList();
 		header('Location: index.php?action=showTaskOf&idListe='.$idListe);
+	}
+
+	public function deletePublicList(){
+		ModelVisiteur::deletePublicList();
+		header('Location: index.php?action=showPublicList');
 	}
 }
 
