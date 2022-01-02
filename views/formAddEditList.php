@@ -12,7 +12,7 @@
             </p>
             <p>
                 <input type="submit" name="subbutton" value="Sauvegarder">
-				<a href="<?= isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "index.php?action=showPublicList" ?>">Retour</a>
+				<a href="<?= isset($_POST["idListe"]) ? "index.php?action=showTaskOf&idListe=".$_POST["idListe"] : "index.php?action=showPublicList" ?>">Retour</a>
             </p>
         </form>
     </div>

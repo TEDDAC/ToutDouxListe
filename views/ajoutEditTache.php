@@ -16,8 +16,8 @@
                 <textarea name="description" rows="8" cols="50"><?= isset($tache) ? $tache->get_description() : "" ?></textarea>
             </p>
             <p>
-                <input type="submit" name="subbutton" value="Ajouter">
-				<a href="<?= isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "index.php?action=showPublicList" ?>">Retour</a>
+                <input type="submit" name="subbutton" value="Sauvegarder">
+				<a href="<?= isset($_POST["idListe"]) ? "index.php?action=showTaskOf&idListe=".$_POST["idListe"] : "index.php?action=showPublicList" ?>">Retour</a>
             </p>
         </form>
     </div>

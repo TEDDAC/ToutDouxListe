@@ -21,6 +21,7 @@ class GWtache {
         $query = "SELECT id,titre,description,fait,DATE_FORMAT(dateFin,'%Y-%m-%d %H:%i') dateFin,listeid FROM tache where id=:id";
         $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
 		$result = $this->con->getResults();
+		if(count($result) == 0) throw new Exception("Cette tache n'existe pas.", 1);
 		$tache = $result[0];
 		return new Tache($tache["id"],$tache["titre"],$tache["description"],$tache["fait"],$tache["dateFin"],$tache["listeid"]);
     }

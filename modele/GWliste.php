@@ -20,6 +20,7 @@ class GWliste {
 	public function getPublicList(){ //retourne les listes de l'utilisateur id (si id = 0 est vide, la fonction retournera les listes publiques)
 		$query = "SELECT id,titre,description,visibilite,userid FROM liste where visibilite=1";
 		$this->con->executeQuery($query);
+		$tab = [];
 		foreach ($this->con->getResults() as $liste) {
 			$tab[] = new Liste($liste["id"],$liste["titre"],$liste["description"],$liste["visibilite"],$liste["userid"]);
 		}
@@ -30,6 +31,7 @@ class GWliste {
         $query = "SELECT id,titre,description,visibilite,userid FROM liste where id=:id";
         $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
         $result = $this->con->getResults();
+		if(count($result) == 0) throw new Exception("Cette liste n'existe pas.", 1);
 		$liste = $result[0];
 		return new Liste($liste["id"],$liste["titre"],$liste["description"],$liste["visibilite"],$liste["userid"]);
     }

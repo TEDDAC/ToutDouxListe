@@ -1,115 +1,63 @@
 <?php
 
 class Validation {
-
-	static function validateAction($action) {
-		if (!isset($action)) {
-			throw new Exception("Action manquante !");
-		}
-	}
-
-	static function validateFormLogin(string &$name, string &$password, array &$Erreurs){
-		validateName($name,$Erreur);
-		validatePassword($password,$Erreur);
-	}
-
-	static function validateFormSignup(string &$name, string &$mail, string &$password, string &$confirmpassword, array &$Erreurs){
-		validateName($name, $Erreurs);
-		validateMail($mail, $Erreurs);
-		validatePassword($password, $Erreurs);
-		validateConfirmPassword($password, $confirmpassword, $Erreurs);
-	}
-
-	static function validateFormTask(string &$title, string &$description, string &$date, string &$check, array &$Erreurs){
-		validateTaskName($title, $Erreurs);
-		validateTaskText($description, $Erreurs);
-		validateDate($date, $Erreurs);
-		validateCheckbox($confirmpassword, $Erreurs);
-	}
-
-	/*Functions*/
-
-	public function validateMail(string &$mail, array &$Erreurs){
-		if (isset($mail)) {
-			$Erreurs[] = "Le mail ne peut être vide";
+	public static function validateMail($mail){
+		if ($mail == NULL) {
+			throw new Exception("Le mail ne peut être vide");
 		} else {
 			if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-				$Erreurs[] = "L\'email n\'est pas valide";
+				throw new Exception("L'email '".$mail."' n'est pas valide");
 			}
 		}
 	}
 
-	public function validateCheckbox(string &$check, array &$Erreurs){
-		if (isset($check)) {
-			$Erreurs[] = "Le nom d\'utilisateur ne peut être vide";
-		} else {
-			if ($check != 'vrai') {
-				$Erreurs[] = "La valeur de la checkbox est invalide";
-			}
-		}
-	}
-
-	public function validateDate(string &$date, array &$Erreurs){
-		if (isset($date)) {
-			$Erreurs[] = "La date ne peut être vide";
-		} else {
-			if (!checkdate($date)) {
-				$Erreurs[] = "La date n'est pas valide";
-			}
-		}
-	}
-
-
-	public function validatePassword(string &$password, array &$Erreurs){
-		if (isset($password)) {
-			$Erreurs[] = "Le mot de passe ne peut être vide";
+	public static function validatePassword($password){
+		if ($password == NULL) {
+			throw new Exception("Le mot de passe ne peut être vide");
 		} else {
 			if (!preg_match('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$', $password)) {
-				$Erreurs[] = "Le mot de passe n'est pas valide";
+				throw new Exception("Le mot de passe n'est pas valide");
 			}
-			$password = validateString($password);
+			return Validation::validateString($password);
 		}
 	}
 
-	public function validateName(string &$name, array &$Erreurs){
-		if (isset($name)) {
-			$Erreurs[] = "Le pseudo ne peut être vide";
-		} else {
-			if (!preg_match('^[A-Za-z]{5,25}', $name)) {
-				$Erreurs[] = "Le pseudo n'est pas valide";
-			}
-			$name = validateString($name);
-		}
-	}
-
-	public function validateConfirmPassword(string &$password, string &$confirmpassword, array &$Erreurs){
-		if (isset($confirmpassword)) {
-			$Erreurs[] = "Le mot de passe ne peut être vide";
+	public static function validateConfirmPassword(string $password, string $confirmpassword){
+		if ($confirmpassword == NULL) {
+			throw new Exception("Le mot de passe ne peut être vide");
 		} else {
 			if (!($confirmpassword == $password)) {
-				$Erreurs[] = "Le mot de passe n'est pas similaire";
+				throw new Exception("Le mot de passe n'est pas similaire");
 			}
 		}
-
 	}
 
-	public function validateTaskName(string &$title, array &$Erreurs){
-		if (isset($title)) {
-			$Erreurs[] = "Le titre ne peut être vide";
+	public static function validateTitle(string $title){ //sert pour les taches et les listes
+		if ($title == NULL) {
+			throw new Exception("Le titre ne peut être vide");
 		} else {
-			if (!preg_match('^[A-Za-z]{5,50}', $title)) {
-				$Erreurs[] = "Le titre n'est pas valide";
-			}
-			$title = validateString($title);
+			/*if (!preg_match('[a-zA-Z0-9].{4,50}', $title)) {
+				throw new Exception("Le titre '".$title."' n'est pas valide. Le titre doit contenir au moins 5 caractère, et doit commencer par une lettre ou un chiffre.");
+			}*/
+			return Validation::validateString($title);
 		}
 	}
 
-	public function validateTaskText(string $description, array &$Erreurs){
-		$description = validateString($description);
+	public static function validateDate(string $date){ //les dates sont sous la forme "année-mois-jourTheure:minute"
+		/*if (!preg_match("^([0-9]-){2}[0-9]T[0-9]:[0-9]$", $date)) {
+			throw new Exception("La date n'est pas valide");
+		}*/
+		return $date;
 	}
 
 	public static function validateString(string $chaine){
-		return filter_var($chaine, FILTER_SANITIZE_STRING);
+		if(filter_var($chaine, FILTER_SANITIZE_STRING) != $chaine) throw new Exception("La chaine '".$chaine."' n'est pas valide.");
+		return $chaine;
+	}
+
+	public static function validateInt(string $int){
+		if(filter_var($int, FILTER_SANITIZE_NUMBER_INT) != $int) throw new Exception("Le nombre '".$int."' n'est pas valide.");
+		return $int;
 	}
 }
 	?>
