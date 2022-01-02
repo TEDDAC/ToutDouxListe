@@ -10,6 +10,7 @@ class GWtache {
     public function getTaskOf(int $id){ //retourne les taches de la liste
         $query = "SELECT id,titre,description,fait,DATE_FORMAT(dateFin,'%d-%M-%Y %H:%i') dateFin,listeid FROM tache where listeid=:id";
         $this->con->executeQuery($query,array(":id"=>array($id,PDO::PARAM_INT)));
+		$tab = array();
 		foreach ($this->con->getResults() as $tache) {
 			$tab[] = new Tache($tache["id"],$tache["titre"],$tache["description"],$tache["fait"],$tache["dateFin"],$tache["listeid"]);
 		}

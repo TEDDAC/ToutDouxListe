@@ -10,5 +10,8 @@
 	<?php
     }
     ?>
+
+	<br>
+	<a href="index.php?action=addPublicListForm">Créer une liste publique</a>
 </body>
 </html>

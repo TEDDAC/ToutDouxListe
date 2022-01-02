@@ -16,7 +16,7 @@
                 <textarea name="description" rows="8" cols="50"><?= isset($tache) ? $tache->get_description() : "" ?></textarea>
             </p>
             <p>
-                <input type="submit" name="subbutton" value="Sauvegarder">
+                <input type="submit" name="subbutton" value="Ajouter">
 				<a href="<?= isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "index.php?action=showPublicList" ?>">Retour</a>
             </p>
         </form>

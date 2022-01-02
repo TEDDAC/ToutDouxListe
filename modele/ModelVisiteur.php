@@ -50,7 +50,7 @@ class ModelVisiteur
 		$tache->set_titre($_POST["titre"]);
 		$tache->set_description($_POST["description"]);
 		$tache->set_dateFin($_POST["dateFin"]);
-		$tache->set_fait((isset($_POST["fait"]) && $_POST["fait"]) ? true : false);
+		$tache->set_fait((isset($_POST["fait"]) && $_POST["fait"] == true) ? true : false);
 		$gwTache->editTask($tache->get_id(),$tache->get_titre(),$tache->get_description(),$tache->get_dateFin(),$tache->isDone());
 		return $tache;
 	}
@@ -62,6 +62,12 @@ class ModelVisiteur
 		$liste = $gwListe->getList($_GET["idListe"]);
 		if($liste->get_visibilite() == 0){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
 		return $liste;
+	}
+
+	public static function createPublicList(){
+		$gwListe = new GWliste();
+		$gwListe->insertListIn($_POST["titre"], $_POST["description"], 1, NULL);
+		return $gwListe->getLastIdInserted();
 	}
 }
 

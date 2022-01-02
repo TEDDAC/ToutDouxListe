@@ -32,6 +32,12 @@ class ControllerVisiteur
 			case 'updateTask':
 				$this->editTask();
 				break;
+			case 'addPublicListForm':
+				require("views/formAddEditList.php");
+				break;
+			case 'addPublicList':
+				$this->createPublicList();
+				break;
 			default:
 				throw new Exception("L'action ".$action." n'existe pas !");
 				break;
@@ -73,6 +79,11 @@ class ControllerVisiteur
 	public function editTask(){
 		$tache = ModelVisiteur::editTask();
 		header('Location: index.php?action=showTaskOf&idListe='.$tache->get_listeId());
+	}
+
+	public function createPublicList(){
+		$idListe = ModelVisiteur::createPublicList();
+		header('Location: index.php?action=showTaskOf&idListe='.$idListe);
 	}
 }
 
