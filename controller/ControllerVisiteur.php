@@ -41,6 +41,12 @@ class ControllerVisiteur
 			case 'deletePublicList':
 				$this->deletePublicList();
 				break;
+			case 'editPublicListForm':
+				$this->editPublicListForm();
+				break;
+			case 'editPublicList':
+				$this->editPublicList();
+				break;
 			default:
 				throw new Exception("L'action ".$action." n'existe pas !");
 				break;
@@ -92,6 +98,16 @@ class ControllerVisiteur
 	public function deletePublicList(){
 		ModelVisiteur::deletePublicList();
 		header('Location: index.php?action=showPublicList');
+	}
+
+	public function editPublicListForm(){
+		$liste = ModelVisiteur::getList();
+		require("views/formAddEditList.php");
+	}
+
+	public function editPublicList(){
+		$liste = ModelVisiteur::editPublicList();
+		header('Location: index.php?action=showTaskOf&idListe='.$liste->get_id());
 	}
 }
 

@@ -80,6 +80,18 @@ class ModelVisiteur
 		$gwTache->deleteAllTaskOf($_GET["idListe"]);
 		$gwListe->deleteList($_GET["idListe"]);
 	}
+
+	public static function editPublicList(){
+		$gwListe = new GWliste();
+		if(!isset($_GET["idListe"]) || $_GET["idListe"] == NULL) throw new Exception("Il n'y a aucune liste cible.");
+		$_GET["idListe"] = filter_var($_GET["idListe"], FILTER_SANITIZE_NUMBER_INT);
+		$liste = $gwListe->getList($_GET["idListe"]);
+		if($liste->get_visibilite() == 0){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
+		$liste->set_titre($_POST["titre"]);
+		$liste->set_description($_POST["description"]);
+		$gwListe->editList($liste->get_id(),$liste->get_titre(),$liste->get_description());
+		return $liste;
+	}
 }
 
 ?>

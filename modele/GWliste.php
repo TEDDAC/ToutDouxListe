@@ -44,12 +44,11 @@ class GWliste {
         ));
     }
 
-    public function editList(int $id,string $titre,string $description, string $couleur, string $visibilite){
-        $query = "UPDATE liste SET titre=:titre,description=:description,visibilite=:visibilite WHERE id=:id";
+    public function editList(int $id,string $titre,string $description){
+        $query = "UPDATE liste SET titre=:titre,description=:description WHERE id=:id";
         $this->con->executeQuery($query,array(
             ":titre"=>array($titre,PDO::PARAM_STR),
             ":description"=>array($description,PDO::PARAM_STR),
-            ":visibilite"=>array($visibilite,PDO::PARAM_STR),
             ":id"=>array($id,PDO::PARAM_INT)
         ));
     }

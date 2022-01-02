@@ -18,7 +18,7 @@
 		<br>
     <?php }
     ?>
-	<a href="index.php?action=insertTaskForm&idListe=<?= $_GET["idListe"] ?>">Ajouter une tache</a><br>
+	<a href="index.php?action=insertTaskForm&idListe=<?= $_GET["idListe"] ?>">Ajouter une tache</a><br><br>
 
 	<button type="button" name="confirmListDelete" onclick="confirmListDelete()">Supprimer la liste</button><br>
 	<script type="text/javascript">
@@ -28,7 +28,7 @@
 			}
 		}
 	</script>
-
+	<a href="index.php?action=editPublicListForm&idListe=<?= $liste->get_id() ?>">Modifier la liste</a><br><br>
 
 	<a href="index.php?action=showPublicList">Accueil</a>
 </body>
