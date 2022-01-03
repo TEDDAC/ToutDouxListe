@@ -20,7 +20,6 @@ class ModelVisiteur
 	public static function addTaskTo(){ //AUCUNE VALIDATION DES CHAMPS N'EST FAITE: A FAIRE+++++++++++++++++++++
 		$gwTache = new GWtache();
 		$liste = ModelVisiteur::getList();
-		var_dump($_POST["titre"]);
 		$titre = Validation::validateTitle($_POST["titre"]);
 		$description = Validation::validateString($_POST["description"]);
 		$dateFin = Validation::validateDate($_POST["dateFin"]);

@@ -15,7 +15,7 @@ class Validation {
 		if ($password == NULL) {
 			throw new Exception("Le mot de passe ne peut être vide");
 		} else {
-			if (!preg_match('^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$', $password)) {
+			if (!preg_match('/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/', $password)) {
 				throw new Exception("Le mot de passe n'est pas valide");
 			}
 			return Validation::validateString($password);
@@ -36,17 +36,17 @@ class Validation {
 		if ($title == NULL) {
 			throw new Exception("Le titre ne peut être vide");
 		} else {
-			/*if (!preg_match('[a-zA-Z0-9].{4,50}', $title)) {
+			if (!preg_match('/[a-zA-Z0-9].{4,50}/', $title)) {
 				throw new Exception("Le titre '".$title."' n'est pas valide. Le titre doit contenir au moins 5 caractère, et doit commencer par une lettre ou un chiffre.");
-			}*/
+			}
 			return Validation::validateString($title);
 		}
 	}
 
 	public static function validateDate(string $date){ //les dates sont sous la forme "année-mois-jourTheure:minute"
-		/*if (!preg_match("^([0-9]-){2}[0-9]T[0-9]:[0-9]$", $date)) {
+		if ($date != NULL and !preg_match("/^([0-9]{2,4}-){2}[0-9]{2}T[0-9]{2}:[0-9]{2}$/", $date)) {
 			throw new Exception("La date n'est pas valide");
-		}*/
+		}
 		return $date;
 	}
 
