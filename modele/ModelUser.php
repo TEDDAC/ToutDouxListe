@@ -78,9 +78,9 @@ class ModelUser
 		$gwListe->deleteList($idListe);
 	}
 
-	public static function editPublicList(){
+	public static function editPrivateList(){
 		$gwListe = new GWliste();
-		$liste = ModelUser::checkListById($_GET["idListe"]);
+		$liste = ModelUser::getList($_GET["idListe"]);
 		$liste->set_titre(Validation::validateTitle($_POST["titre"]));
 		$liste->set_description(Validation::validateString($_POST["description"]));
 		$gwListe->editList($liste->get_id(),$liste->get_titre(),$liste->get_description());
@@ -91,7 +91,7 @@ class ModelUser
 		$gwListe = new GWliste();
 		if(!isset($idListe) || $idListe == NULL) throw new Exception("Il n'y a aucune liste cible.");
 		$liste = $gwListe->getList($idListe);
-		if($liste->get_userid() != $_SESSION["userid"]){ throw new Exception("Vous n'avez pas accès à cette liste !".$_SESSION["userid"]); }
+		if($liste->get_visibilite() == 0 and $liste->get_userid() != $_SESSION["userid"]){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
 		return $liste;
 	}
 

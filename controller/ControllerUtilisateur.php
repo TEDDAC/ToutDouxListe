@@ -33,10 +33,14 @@ class ControllerUtilisateur
 				break;
 			case 'pvRemoveList' :
 				break;
-			case 'pvEditList':
+			case 'pvEditListForm':
+				$this->editPrivateListForm();
 				break;
 			case 'showPrivateList':
 				$this->showPrivateList();
+				break;
+			case 'pvEditList':
+				$this->editPrivateList();
 				break;
 
 			default:
@@ -82,14 +86,14 @@ class ControllerUtilisateur
 		header('Location: index.php?action=showPublicList');
 	}
 
-	public function editPublicListForm(){
-		$liste = ModelVisiteur::getList();
+	public function editPrivateListForm(){
+		$liste = ModelUser::getList();
 		require("views/formAddEditList.php");
 	}
 
-	public function editPublicList(){
-		$liste = ModelVisiteur::editPublicList();
-		header('Location: index.php?action=showTaskOf&idListe='.$liste->get_id());
+	public function editPrivateList(){
+		$liste = ModelUser::editPrivateList();
+		header('Location: index.php?action=pvshowTaskOf&idListe='.$liste->get_id());
 	}
 
 	public function showPrivateList()

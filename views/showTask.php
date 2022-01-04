@@ -36,7 +36,7 @@
 				}
 			}
 		</script>
-		<a href="index.php?action=editPublicListForm&idListe=<?= $liste->get_id() ?>">Modifier la liste</a><br><br>
+		<a href="index.php?action=<?= (isset($_SESSION["userid"]) && $_SESSION["userid"] != NULL) ? "pvEditListForm":"editPublicListForm" ?>&idListe=<?= $liste->get_id() ?>">Modifier la liste</a><br><br>
 	</div>
 </body>
 </html>
