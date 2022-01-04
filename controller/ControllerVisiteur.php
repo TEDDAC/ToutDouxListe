@@ -124,7 +124,7 @@ class ControllerVisiteur
 
 	public function createAccount(){
 		ModelVisiteur::createAUser();
-		header('Location: index.php');
+		header('Location: index.php?action=formlog');
 	}
 
 	public function logUser(){
