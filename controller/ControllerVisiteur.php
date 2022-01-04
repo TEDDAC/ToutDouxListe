@@ -11,13 +11,13 @@ class ControllerVisiteur
 
 		$action = Validation::validateString($_GET["action"]);
 		switch ($action) {
-			case 'formlog':
+			case 'login':
 				$this->logUser();
 				break;
 			case 'formcreate':
 				$this->createAccount();
 				break;
-			case 'login':
+			case 'formlog':
 				require("views/login.php");
 				break;
 			case 'signup':
