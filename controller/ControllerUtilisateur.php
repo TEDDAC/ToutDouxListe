@@ -88,6 +88,11 @@ class ControllerVisiteur
 		$liste = ModelVisiteur::editPublicList();
 		header('Location: index.php?action=showTaskOf&idListe='.$liste->get_id());
 	}
+
+	public function LogOut(){
+		ModelUser::logout();
+		header('Location: index.php');
+	}
 }
 
 ?>
