@@ -78,7 +78,7 @@ class ModelVisiteur
 		$gwTache = new GWtache();
 		if(!isset($_GET["idListe"]) || $_GET["idListe"] == NULL) throw new Exception("Il n'y a aucune liste cible.");
 		$idListe = Validation::validateInt($_GET["idListe"]);
-		$liste = $gwListe->getList($idListe);
+		$liste = ModelVisiteur::getList($idListe);
 		$gwTache->deleteAllTaskOf($idListe);
 		$gwListe->deleteList($idListe);
 	}
@@ -103,6 +103,7 @@ class ModelVisiteur
 	public static function createAUser(){
 		$gwUser = new GWuser();
 		$mail = Validation::validateMail($_POST["mail"]);
+		if($gwUser->getUser($mail) != NULL) throw new Exception("Email déjà utilisé", 1);
 		$username = Validation::validateName($_POST["username"]);
 		$password = Validation::validatePassword($_POST["password"]);
 		$passwordconfirm = Validation::validateConfirmPassword($password, $_POST["secondpassword"]);
@@ -115,6 +116,7 @@ class ModelVisiteur
 		$mail = Validation::validateMail($_POST["mail"]);
 		$password = Validation::validatePassword($_POST["password"]);
 		$utilisateur = $gwUser->getUser($mail);
+		if($utilisateur == NULL) throw new Exception("Email inconnu", 1);
 		password_verify($password,$utilisateur->get_password());
 		$_SESSION['userid'] = $utilisateur->get_id();
 	}

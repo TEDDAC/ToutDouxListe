@@ -8,7 +8,7 @@
 			<div><h4><a href="index.php?action=logout">Se deconnecter</a></h4></div>
 		<?php
 		} else {
-			?> <div><h4><a href="index.php?action=login">Se connecter</a></h4></div> <?php
+			?> <div><h4><a href="index.php?action=formlog">Se connecter</a></h4></div> <?php
 		}
 		?>
 	</nav>

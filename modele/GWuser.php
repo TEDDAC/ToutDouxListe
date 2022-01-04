@@ -11,7 +11,7 @@ class GWUser {
         $query = "SELECT id,pseudo,mail,password FROM utilisateur where mail=:mail";
         $this->con->executeQuery($query,array(":mail"=>array($mail,PDO::PARAM_STR)));
         $result = $this->con->getResults();
-        if(count($result) == 0) throw new Exception("Cette liste n'existe pas.", 1);
+        if(count($result) == 0) return NULL;
         $user = $result[0];
         return new Utilisateur($user["id"], $user["pseudo"], $user["mail"], $user["password"]);
     }
