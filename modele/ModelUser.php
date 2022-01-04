@@ -60,11 +60,12 @@ class ModelUser
 		return $liste;
 	}
 
-	public static function createPublicList(){
+	public static function createPrivateList(){
+		if(isset($_SESSION["userid"]) and $_SESSION["userid"] == NULL) throw new Exception("Vous n'êtes pas connecer", 1);
 		$gwListe = new GWliste();
 		$titre = Validation::validateTitle($_POST["titre"]);
 		$description = Validation::validateString($_POST["description"]);
-		$gwListe->insertListIn($titre, $description, 1, NULL);
+		$gwListe->insertListIn($titre, $description, 0, $_SESSION["userid"]);
 		return $gwListe->getLastIdInserted();
 	}
 
@@ -107,6 +108,7 @@ class ModelUser
 
 	public static function logUser(){
 		$gwUser = new GWuser();
+		throw new Exception($_POST["mail"]);
 		$mail = Validation::validateMail($_POST["mail"]);
 		$password = Validation::validatePassword($_POST["password"]);
 		$utilisateur = $gwUser->getUser($mail);

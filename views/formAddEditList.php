@@ -13,7 +13,13 @@
 					echo "pvEditList";
 				else echo "editPublicList";
 				echo "&idListe=".$liste->get_id();
-			} else echo "addPublicList"; ?>" method="POST">
+			} else {
+				if(isset($_SESSION["userid"]) && $_SESSION["userid"] != NULL)
+					echo "addPrivateList";
+				else
+				 	echo "addPublicList";
+			}
+			 ?>" method="POST">
                 <input type="text" name="titre" placeholder="Ma liste" <?php if(isset($liste)) echo('value="'.$liste->get_titre()).'"'; ?>>
             <p>
                 <textarea name="description" rows="8" cols="50"><?= isset($liste) ? $liste->get_description() : "" ?></textarea>

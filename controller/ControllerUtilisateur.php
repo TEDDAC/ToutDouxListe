@@ -29,7 +29,8 @@ class ControllerUtilisateur
 			case 'pvupdateTask':
 				$this->editTask();
 				break;
-			case 'pvAddList':
+			case 'addPrivateList':
+				$this->createPrivateList();
 				break;
 			case 'pvRemoveList' :
 				break;
@@ -41,6 +42,9 @@ class ControllerUtilisateur
 				break;
 			case 'pvEditList':
 				$this->editPrivateList();
+				break;
+			case 'pvAddListForm':
+				require("views/formAddEditList.php");
 				break;
 
 			default:
@@ -76,9 +80,9 @@ class ControllerUtilisateur
 		header('Location: index.php?action=showTaskOf&idListe='.$tache->get_listeId());
 	}
 
-	public function createPublicList(){
-		$idListe = ModelUser::createPublicList();
-		header('Location: index.php?action=showTaskOf&idListe='.$idListe);
+	public function createPrivateList(){
+		$idListe = ModelUser::createPrivateList();
+		header('Location: index.php?action=pvshowTaskOf&idListe='.$idListe);
 	}
 
 	public function deletePublicList(){
