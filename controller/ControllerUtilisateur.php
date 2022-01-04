@@ -53,42 +53,42 @@ class ControllerUtilisateur
 	}
 
 	public function addTaskTo(){
-		ModelVisiteur::addTaskTo();
+		ModelUser::addTaskTo();
 		header('Location: index.php?action=showTaskOf&idListe='.$_GET["idListe"]);
 	}
 
 	public function removeTask(){
-		ModelVisiteur::removeTask();
+		ModelUser::removeTask();
 		header('Location: '.$_SERVER['HTTP_REFERER']);
 	}
 
 	public function editTaskForm(){
-		$tache = ModelVisiteur::getTask();
+		$tache = ModelUser::getTask();
 		require("views/ajoutEditTache.php");
 	}
 
 	public function editTask(){
-		$tache = ModelVisiteur::editTask();
+		$tache = ModelUser::editTask();
 		header('Location: index.php?action=showTaskOf&idListe='.$tache->get_listeId());
 	}
 
 	public function createPublicList(){
-		$idListe = ModelVisiteur::createPublicList();
+		$idListe = ModelUser::createPublicList();
 		header('Location: index.php?action=showTaskOf&idListe='.$idListe);
 	}
 
 	public function deletePublicList(){
-		ModelVisiteur::deletePublicList();
+		ModelUser::deletePublicList();
 		header('Location: index.php?action=showPublicList');
 	}
 
 	public function editPublicListForm(){
-		$liste = ModelVisiteur::getList();
+		$liste = ModelUser::getList();
 		require("views/formAddEditList.php");
 	}
 
 	public function editPublicList(){
-		$liste = ModelVisiteur::editPublicList();
+		$liste = ModelUser::editPublicList();
 		header('Location: index.php?action=showTaskOf&idListe='.$liste->get_id());
 	}
 
