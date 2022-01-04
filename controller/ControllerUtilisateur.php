@@ -63,7 +63,7 @@ class ControllerUtilisateur
 
 	public function addTaskTo(){
 		ModelUser::addTaskTo();
-		header('Location: index.php?action=showTaskOf&idListe='.$_GET["idListe"]);
+		header('Location: index.php?action=pvshowTaskOf&idListe='.$_GET["idListe"]);
 	}
 
 	public function removeTask(){
@@ -78,7 +78,7 @@ class ControllerUtilisateur
 
 	public function editTask(){
 		$tache = ModelUser::editTask();
-		header('Location: index.php?action=showTaskOf&idListe='.$tache->get_listeId());
+		header('Location: index.php?action=pvshowTaskOf&idListe='.$tache->get_listeId());
 	}
 
 	public function createPrivateList(){
