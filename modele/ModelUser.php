@@ -8,13 +8,13 @@ class ModelUser
 
 	public static function getTaskOf(){
 		$gwTache = new GWtache();
-		$liste = ModelVisiteur::getList();
+		$liste = ModelUser::getList();
 		return $gwTache->getTaskOf($_GET["idListe"]);
 	}
 
 	public static function addTaskTo(){ //AUCUNE VALIDATION DES CHAMPS N'EST FAITE: A FAIRE+++++++++++++++++++++
 		$gwTache = new GWtache();
-		$liste = ModelVisiteur::getList();
+		$liste = ModelUser::getList();
 		$titre = Validation::validateTitle($_POST["titre"]);
 		$description = Validation::validateString($_POST["description"]);
 		$dateFin = Validation::validateDate($_POST["dateFin"]);
@@ -45,7 +45,7 @@ class ModelUser
 		if(!isset($_GET["id"]) || $_GET["id"] == NULL) throw new Exception("Aucune tache n'est choisi");
 		$id = Validation::validateInt($_GET["id"]);
 		$tache = $gwTache->getTask($id);
-		$liste = ModelVisiteur::checkListById(Validation::ValidateInt($tache->get_listeId()));
+		$liste = ModelUser::checkListById(Validation::ValidateInt($tache->get_listeId()));
 		$tache->set_titre(Validation::validateTitle($_POST["titre"]));
 		$tache->set_description(Validation::validateString($_POST["description"]));
 		$tache->set_dateFin(Validation::validateDate($_POST["dateFin"]));
@@ -56,7 +56,7 @@ class ModelUser
 
 	public static function getList(){
 		$idListe = Validation::validateInt($_GET["idListe"]);
-		$liste = ModelVisiteur::checkListById($idListe);
+		$liste = ModelUser::checkListById($idListe);
 		return $liste;
 	}
 
@@ -80,7 +80,7 @@ class ModelUser
 
 	public static function editPublicList(){
 		$gwListe = new GWliste();
-		$liste = ModelVisiteur::checkListById($_GET["idListe"]);
+		$liste = ModelUser::checkListById($_GET["idListe"]);
 		$liste->set_titre(Validation::validateTitle($_POST["titre"]));
 		$liste->set_description(Validation::validateString($_POST["description"]));
 		$gwListe->editList($liste->get_id(),$liste->get_titre(),$liste->get_description());
@@ -91,7 +91,7 @@ class ModelUser
 		$gwListe = new GWliste();
 		if(!isset($idListe) || $idListe == NULL) throw new Exception("Il n'y a aucune liste cible.");
 		$liste = $gwListe->getList($idListe);
-		if($liste->get_visibilite() == 0){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
+		if($liste->get_userid() != $_SESSION["userid"]){ throw new Exception("Vous n'avez pas accès à cette liste !".$_SESSION["userid"]); }
 		return $liste;
 	}
 
@@ -112,6 +112,13 @@ class ModelUser
 		$utilisateur = $gwUser->getUser($mail);
 		password_verify($password,$utilisateur->get_password());
 		$_SESSION['userid'] = $utilisateur->get_id();
+	}
+
+	public static function getPrivateList(){
+		if(!isset($_SESSION["userid"]) && $_SESSION["userid"] == NULL) throw new Exception("Vous n'êtes pas connecté.", 1);
+		$userid = Validation::validateInt($_SESSION["userid"]);
+		$gwListe = new GWliste();
+		return $gwListe->getListOf($userid);
 	}
 }
 

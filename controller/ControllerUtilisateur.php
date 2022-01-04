@@ -1,5 +1,5 @@
 <?php
-class ControllerVisiteur
+class ControllerUtilisateur
 {
 
 	function __construct()
@@ -14,7 +14,7 @@ class ControllerVisiteur
 			case 'logout':
 				$this->LogOut();
 				break;
-			case 'showTaskOf':
+			case 'pvshowTaskOf':
 				$this->showTaskOf();
 				break;
 			case 'pvaddTask':
@@ -35,6 +35,9 @@ class ControllerVisiteur
 				break;
 			case 'pvEditList':
 				break;
+			case 'showPrivateList':
+				$this->showPrivateList();
+				break;
 
 			default:
 				throw new Exception("L'action ".$action." n'existe pas !");
@@ -44,8 +47,8 @@ class ControllerVisiteur
 
 	public function showTaskOf()
 	{
-		$taches = ModelVisiteur::getTaskOf();
-		$liste = ModelVisiteur::getList();
+		$liste = ModelUser::getList();
+		$taches = ModelUser::getTaskOf();
 		require("views/showTask.php");
 	}
 
@@ -87,6 +90,12 @@ class ControllerVisiteur
 	public function editPublicList(){
 		$liste = ModelVisiteur::editPublicList();
 		header('Location: index.php?action=showTaskOf&idListe='.$liste->get_id());
+	}
+
+	public function showPrivateList()
+	{
+		$listes = ModelUser::getPrivateList();
+		require("views/showList.php");
 	}
 }
 

@@ -73,8 +73,8 @@ class ControllerVisiteur
 
 	public function showTaskOf()
 	{
-		$taches = ModelVisiteur::getTaskOf();
 		$liste = ModelVisiteur::getList();
+		$taches = ModelVisiteur::getTaskOf();
 		require("views/showTask.php");
 	}
 
