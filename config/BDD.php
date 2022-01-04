@@ -1,5 +1,5 @@
 <?php
 $user= 'root';
-$pass='';
+$pass='3.14159265359';
 $dsn='mysql:host=localhost;dbname=toutdouxliste';
 ?>

@@ -3,7 +3,7 @@ class GWliste {
 	private $con;
 
 	function __construct(){
-		require('BDD.php');
+		require('config/BDD.php');
 		$this->con = new Connection($dsn,$user,$pass);
     }
 

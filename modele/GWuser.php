@@ -3,7 +3,7 @@ class GWtache {
     private $con;
 
     public function __construct(){
-		require('BDD.php');
+		require('config/BDD.php');
 		$this->con = new Connection($dsn,$user,$pass);
     }
 
