@@ -2,12 +2,13 @@
 <head>
     <meta charset="utf-8">
 	<link rel="stylesheet" href="views/style.css">
-    <title>Home</title>
+    <title><?= (isset($_GET["action"]) and $_GET["showPrivateList&"] == "showPrivateList&") ? "Liste privée" : "Home" ?></title>
 </head>
 <body>
 	<?php require("views/header.php"); ?>
 
 	<div class="showList">
+		<h3><?= (isset($_GET["action"]) and $_GET["action"] == "showPrivateList") ? "Liste privée"  : "Liste Public"?></h3>
 	    <?php
 	    foreach($listes as $liste){
 		?>
