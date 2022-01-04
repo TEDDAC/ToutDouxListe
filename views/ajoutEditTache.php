@@ -7,7 +7,7 @@
 <body>
 	<?php require("views/header.php"); ?>
     <div class="taskform">
-        <form class="formtask" action="index.php?action=<?= isset($tache) ? "updateTask" : "addTask" ?>&<?= isset($tache) ? "id=".$tache->get_id() : "idListe=".$_GET["idListe"] ?>" method="POST">
+        <form class="formtask" action="index.php?action=<?= (isset($_SESSION["userid"]) && $_SESSION["userid"] != NULL) ? "pv":"" ?><?= isset($tache) ? "updateTask" : "addTask" ?>&<?= isset($tache) ? "id=".$tache->get_id() : "idListe=".$_GET["idListe"] ?>" method="POST">
                 <input type="checkbox" name="fait" value="vrai" <?php if(isset($tache)){ if($tache->isDone()) echo "checked"; } ?>>
                 <input type="text" name="titre" placeholder="Acheter du pain" <?php if(isset($tache)) echo("value=\"".$tache->get_titre()."\""); ?>>
             <p>
