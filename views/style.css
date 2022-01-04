@@ -14,9 +14,11 @@ nav{
 	flex-direction: row;
 }
 
-h2{
+header h2{
 	padding-left: 10px;
 	padding-right: 10px;
+	font-weight: bold;
+	font-family: sans-serif;
 }
 
 header div{
@@ -44,4 +46,9 @@ header + div{
 
 .done{
 	text-decoration: line-through;
+}
+
+.taskTitle{
+	font-weight: bold;
+	font-family: sans-serif;
 }

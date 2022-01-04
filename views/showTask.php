@@ -7,24 +7,25 @@
 <body>
 	<?php require("views/header.php"); ?>
 	<div class="showTask">
-		<h2><?= $liste->get_titre() ?></h2>
+		<h2 class="taskTitle"><?= $liste->get_titre() ?></h2>
 		<p><?= $liste->get_description() ?></p>
+		<table>
 	    <?php
 	    foreach($taches as $tache){
-			echo "<span>";
+			echo "<tr>";
 			if($tache->isDone())
-				echo "✓<span class=\"done\">";
-			else echo "○<span>";
+				echo "<td>✓</td><td><span class=\"done\">";
+			else echo "<td>○</td><td><span>";
 	        echo($tache->get_titre().": ".$tache->get_description());
 			if($tache->get_dateFin() != NULL)
 				echo " - ".$tache->get_dateFin(); ?>
 			</span>
 			<a href="index.php?action=editTask&id=<?= $tache->get_id() ?>">🖉</a>
 			<a href="index.php?action=removeTask&id=<?= $tache->get_id() ?>">☓</a>
-		</span>
-			<br>
+		</td></tr>
 	    <?php }
 	    ?>
+		</table>
 		<a href="index.php?action=insertTaskForm&idListe=<?= $_GET["idListe"] ?>">Ajouter une tache</a><br><br>
 
 		<button type="button" name="confirmListDelete" onclick="confirmListDelete()">Supprimer la liste</button><br>
@@ -36,8 +37,6 @@
 			}
 		</script>
 		<a href="index.php?action=editPublicListForm&idListe=<?= $liste->get_id() ?>">Modifier la liste</a><br><br>
-
-		<a href="index.php?action=showPublicList">Accueil</a>
 	</div>
 </body>
 </html>

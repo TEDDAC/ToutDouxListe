@@ -1,7 +1,7 @@
 <header>
 	<h2>ToutDouxListe</h2>
 	<nav>
-		<div><h4><a href="index.php">Accueil</a></h4></div>
+		<div><h4><a href="index.php?action=showPublicList">Accueil</a></h4></div>
 		<?php
 		if(isset($_SESSION["login"]) and $_SESSION["login"]){ ?>
 			<div><h4><a href="index.php?action=showPrivateList&idUser=<?= $_SESSION["login"] ?>">Mes listes</a></h4></div>
