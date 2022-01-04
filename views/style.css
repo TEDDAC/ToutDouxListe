@@ -14,7 +14,34 @@ nav{
 	flex-direction: row;
 }
 
-.navlink{
+h2{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+header div{
 	vertical-align: middle;
-	margin: 10px,5px,10px,5px;
+	transition: 0.1s;
+}
+
+header div:hover{
+	background-color: rgb(200,200,200);
+}
+
+header h4{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+nav a{
+	text-decoration: none;
+	color: black;
+}
+
+header + div{
+	padding: 10px;
+}
+
+.done{
+	text-decoration: line-through;
 }
