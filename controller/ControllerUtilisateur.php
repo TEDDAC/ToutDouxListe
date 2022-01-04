@@ -97,6 +97,11 @@ class ControllerUtilisateur
 		$listes = ModelUser::getPrivateList();
 		require("views/showList.php");
 	}
+
+	public function LogOut(){
+		ModelUser::logout();
+		header('Location: index.php');
+	}
 }
 
 ?>

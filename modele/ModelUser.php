@@ -12,7 +12,7 @@ class ModelUser
 		return $gwTache->getTaskOf($_GET["idListe"]);
 	}
 
-	public static function addTaskTo(){ //AUCUNE VALIDATION DES CHAMPS N'EST FAITE: A FAIRE+++++++++++++++++++++
+	public static function addTaskTo(){
 		$gwTache = new GWtache();
 		$liste = ModelUser::getList();
 		$titre = Validation::validateTitle($_POST["titre"]);
@@ -40,7 +40,7 @@ class ModelUser
 		return $tache;
 	}
 
-	public static function editTask(){ //IDEM ++++++++++++++++++++++++++++
+	public static function editTask(){
 		$gwTache = new GWtache();
 		if(!isset($_GET["id"]) || $_GET["id"] == NULL) throw new Exception("Aucune tache n'est choisi");
 		$id = Validation::validateInt($_GET["id"]);
@@ -119,6 +119,12 @@ class ModelUser
 		$userid = Validation::validateInt($_SESSION["userid"]);
 		$gwListe = new GWliste();
 		return $gwListe->getListOf($userid);
+	}
+
+	public static function logout(){
+		if (session_unset() == false) {
+			throw new Exception("Problème avec la fermeture de session !");
+		}
 	}
 }
 
