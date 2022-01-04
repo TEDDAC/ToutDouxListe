@@ -17,7 +17,7 @@ class ModelUser
 		return $gwTache->getTaskOf($_GET["idListe"]);
 	}
 
-	public static function addTaskTo(){
+	public static function addTaskTo(){ //AUCUNE VALIDATION DES CHAMPS N'EST FAITE: A FAIRE+++++++++++++++++++++
 		$gwTache = new GWtache();
 		$liste = ModelVisiteur::getList();
 		$titre = Validation::validateTitle($_POST["titre"]);
@@ -45,7 +45,7 @@ class ModelUser
 		return $tache;
 	}
 
-	public static function editTask(){
+	public static function editTask(){ //IDEM ++++++++++++++++++++++++++++
 		$gwTache = new GWtache();
 		if(!isset($_GET["id"]) || $_GET["id"] == NULL) throw new Exception("Aucune tache n'est choisi");
 		$id = Validation::validateInt($_GET["id"]);
@@ -98,6 +98,25 @@ class ModelUser
 		$liste = $gwListe->getList($idListe);
 		if($liste->get_visibilite() == 0){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
 		return $liste;
+	}
+
+	public static function createAUser(){
+		$gwUser = new GWuser();
+		$mail = Validation::validateMail($_POST["mail"]);
+		$username = Validation::validateName($_POST["username"]);
+		$password = Validation::validatePassword($_POST["password"]);
+		$passwordconfirm = Validation::validateConfirmPassword($password, $_POST["secondpassword"]);
+		$hash = password_hash($password, PASSWORD_DEFAULT);
+		$gwUser->insertUser($username, $mail, $hash);
+	}
+
+	public static function logUser(){
+		$gwUser = new GWuser();
+		$mail = Validation::validateMail($_POST["mail"]);
+		$password = Validation::validatePassword($_POST["password"]);
+		$utilisateur = $gwUser->getUser($mail);
+		password_verify($password,$utilisateur->get_password());
+		$_SESSION['userid'] = $utilisateur->get_id();
 	}
 }
 

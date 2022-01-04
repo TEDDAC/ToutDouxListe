@@ -5,64 +5,41 @@ class ControllerVisiteur
 	function __construct()
 	{
 		if(!isset($_GET["action"])){
-			$this->showPublicList();
+			header("Location: index.php");
 			return;
 		}
 
 		$action = Validation::validateString($_GET["action"]);
 		switch ($action) {
-			case 'login':
-				require("views/login.php");
-				break;
-			case 'signup':
-				require("views/signup.php");
-				break;
-			case 'showPublicList':
-				$this->showPublicList();
+			case 'logout':
+				$this->LogOut();
 				break;
 			case 'showTaskOf':
 				$this->showTaskOf();
 				break;
-			case 'insertTaskForm':
-				$this->showInsertTaskForm();
-				break;
-			case 'addTask':
+			case 'pvaddTask':
 				$this->addTaskTo();
 				break;
-			case 'removeTask':
+			case 'pvremoveTask':
 				$this->removeTask();
 				break;
-			case 'editTask':
+			case 'pveditTask':
 				$this->editTaskForm();
 				break;
-			case 'updateTask':
+			case 'pvupdateTask':
 				$this->editTask();
 				break;
-			case 'addPublicListForm':
-				require("views/formAddEditList.php");
+			case 'pvAddList':
 				break;
-			case 'addPublicList':
-				$this->createPublicList();
+			case 'pvRemoveList' :
 				break;
-			case 'deletePublicList':
-				$this->deletePublicList();
+			case 'pvEditList':
 				break;
-			case 'editPublicListForm':
-				$this->editPublicListForm();
-				break;
-			case 'editPublicList':
-				$this->editPublicList();
-				break;
+
 			default:
 				throw new Exception("L'action ".$action." n'existe pas !");
 				break;
 		}
-	}
-
-	public function showPublicList()
-	{
-		$listes = ModelVisiteur::getPublicList();
-		require("views/showList.php");
 	}
 
 	public function showTaskOf()
