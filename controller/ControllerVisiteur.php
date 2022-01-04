@@ -11,6 +11,9 @@ class ControllerVisiteur
 
 		$action = Validation::validateString($_GET["action"]);
 		switch ($action) {
+			case 'login':
+				require("views/login.php");
+				break;
 			case 'showPublicList':
 				$this->showPublicList();
 				break;
