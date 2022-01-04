@@ -32,7 +32,7 @@
 		<script type="text/javascript">
 			function confirmListDelete(){
 				if(confirm("Êtes vous sûr de vouloir supprimer cette liste ? Cette action est irréversible et supprimera toutes les tâches de la liste.")){
-					window.location.replace("index.php?action=deletePublicList&idListe=<?= $liste->get_id() ?>");
+					window.location.replace("index.php?action=<?= (isset($_SESSION["userid"]) and $_SESSION["userid"] != NULL) ? "pvRemoveList" : "deletePublicList"?>&idListe=<?= $liste->get_id() ?>");
 				}
 			}
 		</script>

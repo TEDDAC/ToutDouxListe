@@ -17,7 +17,7 @@
 	    ?>
 
 		<br>
-		<a href="index.php?action=<?= (isset($_SESSION["userid"]) && $_SESSION["userid"] != NULL) ? "pvAddListForm":"addPublicListForm" ?>">Créer une liste</a>
+		<a href="index.php?action=<?= (isset($_GET["action"]) and $_GET["action"] == "showPrivateList" and isset($_SESSION["userid"]) && $_SESSION["userid"] != NULL) ? "pvAddListForm":"addPublicListForm" ?>">Créer une liste</a>
 	</div>
 </body>
 </html>

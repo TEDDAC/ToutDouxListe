@@ -32,7 +32,8 @@ class ControllerUtilisateur
 			case 'addPrivateList':
 				$this->createPrivateList();
 				break;
-			case 'pvRemoveList' :
+			case 'pvRemoveList':
+				$this->removePrivateList();
 				break;
 			case 'pvEditListForm':
 				$this->editPrivateListForm();
@@ -85,9 +86,9 @@ class ControllerUtilisateur
 		header('Location: index.php?action=pvshowTaskOf&idListe='.$idListe);
 	}
 
-	public function deletePublicList(){
-		ModelUser::deletePublicList();
-		header('Location: index.php?action=showPublicList');
+	public function removePrivateList(){
+		ModelUser::deletePrivateList();
+		header('Location: index.php?action=showPrivateList&userid='.$_SESSION["userid"]);
 	}
 
 	public function editPrivateListForm(){

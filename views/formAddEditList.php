@@ -14,7 +14,7 @@
 				else echo "editPublicList";
 				echo "&idListe=".$liste->get_id();
 			} else {
-				if(isset($_SESSION["userid"]) && $_SESSION["userid"] != NULL)
+				if(isset($_GET["action"]) and $_GET["action"] == "pvAddListForm" and isset($_SESSION["userid"]) && $_SESSION["userid"] != NULL)
 					echo "addPrivateList";
 				else
 				 	echo "addPublicList";

@@ -69,12 +69,12 @@ class ModelUser
 		return $gwListe->getLastIdInserted();
 	}
 
-	public static function deletePublicList(){
+	public static function deletePrivateList(){
 		$gwListe = new GWliste();
 		$gwTache = new GWtache();
 		if(!isset($_GET["idListe"]) || $_GET["idListe"] == NULL) throw new Exception("Il n'y a aucune liste cible.");
 		$idListe = Validation::validateInt($_GET["idListe"]);
-		$liste = $gwListe->getList($idListe);
+		$liste = ModelUser::getList($idListe);
 		$gwTache->deleteAllTaskOf($idListe);
 		$gwListe->deleteList($idListe);
 	}
