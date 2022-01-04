@@ -1,8 +1,11 @@
 <html>
 <head>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="views/style.css">
     <title>Ma page</title>
 </head>
 <body>
+	<?php require("views/header.php"); ?>
 	<h2><?= $liste->get_titre() ?></h2>
 	<p><?= $liste->get_description() ?></p>
     <?php

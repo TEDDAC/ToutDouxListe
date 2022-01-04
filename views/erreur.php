@@ -1,9 +1,11 @@
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="utf-8">
+	<link rel="stylesheet" href="views/style.css">
     <title>Aie !</title>
 </head>
 <body>
+	<?php require("views/header.php"); ?>
     <div class="error">
         <h3>Aie !  :'(</h3>
         <p>

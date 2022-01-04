@@ -2,10 +2,12 @@
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="utf-8">
+	<link rel="stylesheet" href="views/style.css">
     <title>Login - Sing Up</title>
 </head>
 
 <body>
+	<?php require("views/header.php"); ?>
     <div class="div_signup">
         <h3>Want to register on ToutDouxListe?</h3>
         <?php //index.php?action=signup //$_SERVER['PHP_SELF'] Lui même ne marche pas?>

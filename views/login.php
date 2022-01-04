@@ -3,9 +3,11 @@
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="utf-8">
+	<link rel="stylesheet" href="views/style.css">
     <title>Login - Sing Up</title>
 </head>
 <body>
+	<?php require("views/header.php"); ?>
     <div class="div_signup">
         <h3>Log in to ToutDouxListe</h3>
         <form class="form_log" action="login.php" method="POST">

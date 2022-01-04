@@ -1,9 +1,11 @@
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="utf-8">
+	<link rel="stylesheet" href="views/style.css">
     <title>Tâches</title>
 </head>
 <body>
+	<?php require("views/header.php"); ?>
     <div class="taskform">
         <form class="formtask" action="index.php?action=<?= isset($tache) ? "updateTask" : "addTask" ?>&<?= isset($tache) ? "id=".$tache->get_id() : "idListe=".$_GET["idListe"] ?>" method="POST">
                 <input type="checkbox" name="fait" value="vrai" <?php if(isset($tache)){ if($tache->isDone()) echo "checked"; } ?>>
