@@ -9,13 +9,14 @@ class Validation {
 				throw new Exception("L'email '".$mail."' n'est pas valide");
 			}
 		}
+		return $mail;
 	}
 
-	public static function validatePassword($password){
+	public static function validatePassword(string $password){
 		if ($password == NULL) {
 			throw new Exception("Le mot de passe ne peut être vide");
 		} else {
-			if (!preg_match('/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/', $password)) {
+			if (!preg_match('/^.{5,}$/', $password)) {
 				throw new Exception("Le mot de passe n'est pas valide");
 			}
 			return Validation::validateString($password);
@@ -23,13 +24,11 @@ class Validation {
 	}
 
 	public static function validateConfirmPassword(string $password, string $confirmpassword){
-		if ($confirmpassword == NULL) {
-			throw new Exception("Le mot de passe ne peut être vide");
-		} else {
-			if (!($confirmpassword == $password)) {
-				throw new Exception("Le mot de passe n'est pas similaire");
-			}
+		Validation::validatePassword($confirmpassword);
+		if($confirmpassword != $password){
+			throw new Exception("Le mot de passe n'est pas similaire");
 		}
+
 	}
 
 	public static function validateTitle(string $title){ //sert pour les taches et les listes
@@ -40,6 +39,17 @@ class Validation {
 				throw new Exception("Le titre '".$title."' n'est pas valide. Le titre doit contenir au moins 5 caractère, et doit commencer par une lettre ou un chiffre.");
 			}
 			return Validation::validateString($title);
+		}
+	}
+
+	public static function validateName(string $username){
+		if ($username == NULL){
+			throw new Exception("Le nom ne peut être vide");
+		} else {
+			if (!preg_match('/[a-zA-Z0-9].{1,25}/', $username)){
+				throw new Exception("Le nom ".$username." n'est pas valide il faut au minimum 1 caractère et au maximum 25 caractères");
+			}
+			return Validation::validateString($username);
 		}
 	}
 

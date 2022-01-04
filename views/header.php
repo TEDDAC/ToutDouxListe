@@ -3,8 +3,8 @@
 	<nav>
 		<div><h4><a href="index.php?action=showPublicList">Accueil</a></h4></div>
 		<?php
-		if(isset($_SESSION["login"]) and $_SESSION["login"]){ ?>
-			<div><h4><a href="index.php?action=showPrivateList&idUser=<?= $_SESSION["login"] ?>">Mes listes</a></h4></div>
+		if(isset($_SESSION["userid"]) and $_SESSION["userid"]){ ?>
+			<div><h4><a href="index.php?action=showPrivateList&idUser=<?= $_SESSION["userid"] ?>">Mes listes</a></h4></div>
 			<div><h4><a href="index.php?action=logout">Se deconnecter</a></h4></div>
 		<?php
 		} else {

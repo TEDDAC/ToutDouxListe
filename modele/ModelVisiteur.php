@@ -99,6 +99,25 @@ class ModelVisiteur
 		if($liste->get_visibilite() == 0){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
 		return $liste;
 	}
+
+	public static function createAUser(){
+		$gwUser = new GWuser();
+		$mail = Validation::validateMail($_POST["mail"]);
+		$username = Validation::validateName($_POST["username"]);
+		$password = Validation::validatePassword($_POST["password"]);
+		$passwordconfirm = Validation::validateConfirmPassword($password, $_POST["secondpassword"]);
+		$hash = password_hash($password, PASSWORD_DEFAULT);
+		$gwUser->insertUser($username, $mail, $hash);
+	}
+
+	public static function logUser(){
+		$gwUser = new GWuser();
+		$mail = Validation::validateMail($_POST["mail"]);
+		$password = Validation::validatePassword($_POST["password"]);
+		$utilisateur = $gwUser->getUser($mail);
+		password_verify($password,$utilisateur->get_password());
+		$_SESSION['userid'] = $utilisateur->get_id();
+	}
 }
 
 ?>

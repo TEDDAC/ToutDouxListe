@@ -11,8 +11,17 @@ class ControllerVisiteur
 
 		$action = Validation::validateString($_GET["action"]);
 		switch ($action) {
+			case 'formlog':
+				$this->logUser();
+				break;
+			case 'formcreate':
+				$this->createAccount();
+				break;
 			case 'login':
 				require("views/login.php");
+				break;
+			case 'signup':
+				require("views/signup.php");
 				break;
 			case 'showPublicList':
 				$this->showPublicList();
@@ -111,6 +120,16 @@ class ControllerVisiteur
 	public function editPublicList(){
 		$liste = ModelVisiteur::editPublicList();
 		header('Location: index.php?action=showTaskOf&idListe='.$liste->get_id());
+	}
+
+	public function createAccount(){
+		ModelVisiteur::createAUser();
+		header('Location: index.php');
+	}
+
+	public function logUser(){
+		ModelVisiteur::logUser();
+		header('Location: index.php');
 	}
 }
 
