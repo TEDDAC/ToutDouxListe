@@ -4,7 +4,7 @@ class FrontController {
 		session_start();
 
 		try {
-			$actionUser = array("Logout",'pvshowTaskOf','pvaddTask','pvremoveTask','pveditTask','pvupdateTask','pvAddList','pvRemoveList','pvEditList','showPrivateList');
+			$actionUser = array("logout",'pvshowTaskOf','pvaddTask','pvremoveTask','pveditTask','pvupdateTask','pvAddList','pvRemoveList','pvEditList','showPrivateList');
 			if(isset($_GET["action"]) and in_array($_GET["action"],$actionUser))
 				if(!isset($_SESSION["userid"])){
 					require("views/login.php");
