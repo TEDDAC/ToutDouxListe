@@ -6,11 +6,6 @@ class ModelUser
 
 	}
 
-	public static function getPublicList(){
-		$gw = new GWliste();
-		return $gw->getPublicList();
-	}
-
 	public static function getTaskOf(){
 		$gwTache = new GWtache();
 		$liste = ModelVisiteur::getList();

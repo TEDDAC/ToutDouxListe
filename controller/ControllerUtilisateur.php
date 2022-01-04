@@ -49,10 +49,6 @@ class ControllerVisiteur
 		require("views/showTask.php");
 	}
 
-	public function showInsertTaskForm(){
-		require("views/ajoutEditTache.php");
-	}
-
 	public function addTaskTo(){
 		ModelVisiteur::addTaskTo();
 		header('Location: index.php?action=showTaskOf&idListe='.$_GET["idListe"]);
