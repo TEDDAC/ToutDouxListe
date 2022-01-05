@@ -88,6 +88,7 @@ class ModelUser
 		return $liste;
 	}
 
+	/* Check list by ID permet de regarder si l'utilisateur est connecté pour la gestion des droits */
 	public static function checkListById(int $idListe){
 		$gwListe = new GWliste();
 		if(!isset($idListe) || $idListe == NULL) throw new Exception("Il n'y a aucune liste cible.");
@@ -95,6 +96,8 @@ class ModelUser
 		if($liste->get_visibilite() == 0 and $liste->get_userid() != $_SESSION["userid"]){ throw new Exception("Vous n'avez pas accès à cette liste !"); }
 		return $liste;
 	}
+
+	/* Création d'un utilisateur avec validation des champs et hash du mdp */
 
 	public static function createAUser(){
 		$gwUser = new GWuser();
@@ -106,6 +109,9 @@ class ModelUser
 		$gwUser->insertUser($username, $mail, $hash);
 	}
 
+	/* Verification des champs pour la connection utilisateur avec test du mdp on met l'id de l'utilisateur dans la session */
+
+
 	public static function logUser(){
 		$gwUser = new GWuser();
 		throw new Exception($_POST["mail"]);
@@ -116,12 +122,16 @@ class ModelUser
 		$_SESSION['userid'] = $utilisateur->get_id();
 	}
 
+	/* Renvoi des listes privées  */
+
 	public static function getPrivateList(){
 		if(!isset($_SESSION["userid"]) && $_SESSION["userid"] == NULL) throw new Exception("Vous n'êtes pas connecté.", 1);
 		$userid = Validation::validateInt($_SESSION["userid"]);
 		$gwListe = new GWliste();
 		return $gwListe->getListOf($userid);
 	}
+
+	/* Deconnexion de la session   */
 
 	public static function logout(){
 		if (session_unset() == false) {
