@@ -20,7 +20,7 @@
 			if($tache->get_dateFin() != NULL)
 				echo " - ".$tache->get_dateFin(); ?>
 			</span>
-			<a href="index.php?action=editTask&id=<?= $tache->get_id() ?>">🖉</a>
+			<a href="index.php?action=editTask&idListe=<?= $liste->get_id(); ?>&id=<?= $tache->get_id() ?>">🖉</a>
 			<a href="index.php?action=removeTask&id=<?= $tache->get_id() ?>">☓</a>
 		</td></tr>
 	    <?php }
