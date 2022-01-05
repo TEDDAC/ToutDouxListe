@@ -2,7 +2,6 @@
 class FrontController {
     function __construct(){
 		session_start();
-
 		try {
 			$actionUser = array("logout",'pvshowTaskOf','pvaddTask','pvremoveTask','pveditTask','pvupdateTask','addPrivateList','pvRemoveList','pvEditListForm','showPrivateList','pvEditList','pvAddListForm');
 			if(isset($_GET["action"]) and in_array($_GET["action"],$actionUser))

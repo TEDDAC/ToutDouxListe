@@ -1,9 +1,11 @@
 <?php
 class ControllerVisiteur
 {
-
+	private $vue;
 	function __construct()
 	{
+		global $vue;
+		$this->vue = $vue;
 		if(!isset($_GET["action"])){
 			$this->showPublicList();
 			return;
@@ -18,10 +20,10 @@ class ControllerVisiteur
 				$this->createAccount();
 				break;
 			case 'formlog':
-				require("views/login.php");
+				require($this->vue["login"]);
 				break;
 			case 'signup':
-				require("views/signup.php");
+				require($this->vue["signup"]);
 				break;
 			case 'showPublicList':
 				$this->showPublicList();
@@ -45,7 +47,7 @@ class ControllerVisiteur
 				$this->editTask();
 				break;
 			case 'addPublicListForm':
-				require("views/formAddEditList.php");
+				require($vue["formAddEditList"]);
 				break;
 			case 'addPublicList':
 				$this->createPublicList();
@@ -68,18 +70,18 @@ class ControllerVisiteur
 	public function showPublicList()
 	{
 		$listes = ModelVisiteur::getPublicList();
-		require("views/showList.php");
+		require($this->vue["showList"]);
 	}
 
 	public function showTaskOf()
 	{
 		$liste = ModelVisiteur::getList();
 		$taches = ModelVisiteur::getTaskOf();
-		require("views/showTask.php");
+		require($this->vue["showTask"]);
 	}
 
 	public function showInsertTaskForm(){
-		require("views/ajoutEditTache.php");
+		require($this->vue["ajoutEditTache"]);
 	}
 
 	public function addTaskTo(){
@@ -94,7 +96,7 @@ class ControllerVisiteur
 
 	public function editTaskForm(){
 		$tache = ModelVisiteur::getTask();
-		require("views/ajoutEditTache.php");
+		require($this->vue["ajoutEditTache"]);
 	}
 
 	public function editTask(){
@@ -114,7 +116,7 @@ class ControllerVisiteur
 
 	public function editPublicListForm(){
 		$liste = ModelVisiteur::getList();
-		require("views/formAddEditList.php");
+		require($this->vue["formAddEditList"]);
 	}
 
 	public function editPublicList(){

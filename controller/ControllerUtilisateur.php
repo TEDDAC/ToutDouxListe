@@ -4,6 +4,8 @@ class ControllerUtilisateur
 
 	function __construct()
 	{
+		global $vue;
+		$this->vue = $vue;
 		if(!isset($_GET["action"])){
 			header("Location: index.php");
 			return;
@@ -45,7 +47,7 @@ class ControllerUtilisateur
 				$this->editPrivateList();
 				break;
 			case 'pvAddListForm':
-				require("views/formAddEditList.php");
+				require($this->vue["formAddEditList"]);
 				break;
 
 			default:
@@ -58,7 +60,7 @@ class ControllerUtilisateur
 	{
 		$liste = ModelUser::getList();
 		$taches = ModelUser::getTaskOf();
-		require("views/showTask.php");
+		require($this->vue["showTask"]);
 	}
 
 	public function addTaskTo(){
@@ -73,7 +75,7 @@ class ControllerUtilisateur
 
 	public function editTaskForm(){
 		$tache = ModelUser::getTask();
-		require("views/ajoutEditTache.php");
+		require($this->vue["ajoutEditTache"]);
 	}
 
 	public function editTask(){
@@ -93,7 +95,7 @@ class ControllerUtilisateur
 
 	public function editPrivateListForm(){
 		$liste = ModelUser::getList();
-		require("views/formAddEditList.php");
+		require($this->vue["formAddEditList"]);
 	}
 
 	public function editPrivateList(){
@@ -104,7 +106,7 @@ class ControllerUtilisateur
 	public function showPrivateList()
 	{
 		$listes = ModelUser::getPrivateList();
-		require("views/showList.php");
+		require($this->vue["showList"]);
 	}
 
 	public function LogOut(){
