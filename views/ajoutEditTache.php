@@ -19,7 +19,7 @@
             </p>
             <p>
                 <input type="submit" name="subbutton" value="Sauvegarder">
-				<a href="<?= isset($_GET["idListe"]) ? "index.php?action=showTaskOf&idListe=".$_GET["idListe"] : "index.php?action=showPublicList" ?>">Retour</a>
+				<a href="<?= isset($_GET["idListe"]) ? "index.php?action=".((isset($_SESSION["userid"]) and $_SESSION["userid"] != NULL) ? "pv": "")."showTaskOf&idListe=".$_GET["idListe"] : "index.php?action=showPublicList" ?>">Retour</a>
             </p>
         </form>
     </div>
