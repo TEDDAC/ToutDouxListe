@@ -1,6 +1,8 @@
 <?php
 
 class Validation {
+
+	/* Valide le mail et le filtre selon FILTER_VALIDATE_EMAIL avant de retourner le mail*/
 	public static function validateMail($mail){
 		if ($mail == NULL) {
 			throw new Exception("Le mail ne peut être vide");
@@ -12,17 +14,19 @@ class Validation {
 		return $mail;
 	}
 
+	/* Le mot de passe doit être constitué de 5 caractères */
 	public static function validatePassword(string $password){
 		if ($password == NULL) {
 			throw new Exception("Le mot de passe ne peut être vide");
 		} else {
 			if (!preg_match('/^.{5,}$/', $password)) {
-				throw new Exception("Le mot de passe n'est pas valide");
+				throw new Exception("Le mot de passe n'est pas valide : 5 caractères exigés");
 			}
 			return Validation::validateString($password);
 		}
 	}
 
+	/* Fonction qui compare les mots de passe */
 	public static function validateConfirmPassword(string $password, string $confirmpassword){
 		Validation::validatePassword($confirmpassword);
 		if($confirmpassword != $password){
@@ -31,6 +35,7 @@ class Validation {
 
 	}
 
+	/* Le titre de la tâche et de la liste doit contenir 5 caractères cette fonction retourne après validation */
 	public static function validateTitle(string $title){ //sert pour les taches et les listes
 		if ($title == NULL) {
 			throw new Exception("Le titre ne peut être vide");
@@ -42,6 +47,7 @@ class Validation {
 		}
 	}
 
+	/* Fonction de validation du nom avec 1 caractère minimum et 25 maximum retourne la chaine filtrée */
 	public static function validateName(string $username){
 		if ($username == NULL){
 			throw new Exception("Le nom ne peut être vide");
@@ -53,6 +59,7 @@ class Validation {
 		}
 	}
 
+	/* Vérification de la date */
 	public static function validateDate(string $date){ //les dates sont sous la forme "année-mois-jourTheure:minute"
 		if ($date != NULL and !preg_match("/^([0-9]{2,4}-){2}[0-9]{2}T[0-9]{2}:[0-9]{2}$/", $date)) {
 			throw new Exception("La date n'est pas valide");
