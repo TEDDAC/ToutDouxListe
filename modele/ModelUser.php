@@ -120,7 +120,6 @@ class ModelUser
 	//Verification des champs pour la connection utilisateur avec test du mdp on met l'id de l'utilisateur dans la session
 	public static function logUser(){
 		$gwUser = new GWuser();
-		throw new Exception($_POST["mail"]);
 		$mail = Validation::validateMail($_POST["mail"]);
 		$password = Validation::validatePassword($_POST["password"]);
 		$utilisateur = $gwUser->getUser($mail);
