@@ -1,8 +1,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-	<link rel="stylesheet" href="views/style.css">
-    <title><?= (isset($_GET["action"]) and $_GET["showPrivateList&"] == "showPrivateList&") ? "Liste privée" : "Home" ?></title>
+	<link rel="stylesheet" href="views/style.css"/>
+    <title><?= (isset($_GET["action"]) and $_GET["action"] == "showPrivateList&") ? "Liste privée" : "Home" ?></title>
 </head>
 <body class="backform">
 	<?php require("views/header.php"); ?>

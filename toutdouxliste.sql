@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 05 jan. 2022 à 14:29
+-- Généré le : mer. 05 jan. 2022 à 14:41
 -- Version du serveur :  8.0.21
 -- Version de PHP : 7.3.21
 
@@ -86,18 +86,6 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`id`, `pseudo`, `mail`, `password`) VALUES
-(1, 'TEDDAC', 'mathisribemont@gmail.com', '$2y$10$hCg9n/4ERuEW3O3redSA8e3HuNUG98j9sFS9zS2qCn6kg05gDyq6u'),
-(2, 'dzertyu', 'examples@gmail.com', '$2y$10$u43QOqsJy0ET3Ga9jU7E8eTOLrDPMCHzbPF.MqgYq/96tU/wrzdmy'),
-(3, 'azertyu', 'examples@gmail.com', '$2y$10$Cmg8ECTuLZFpwkhs/qB3DO2h8kHnFiW4Yfmjb.Di4yawEUHdhrLae'),
-(4, 'azertyu', 'examples@gmail.com', '$2y$10$7uLDUzi2xCCPMYjJoy61qOW1MekSrogd.V6CpqoJl.UKSnZHolbOy'),
-(5, 'azertyu', 'examples@gmail.com', '$2y$10$E03nMOrf4rJRxuqeOO36uOc2uyitQhyR5TnS7/dNFF4x.iHPOLg1C'),
-(7, 'TEDDAC2', 'example@gmail.com', '$2y$10$9xoxwuRX2YUOInjp6Kj6cup25EGj5YKIPwnPeXcuUnQJbccJd/FSW');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
