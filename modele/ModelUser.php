@@ -6,12 +6,14 @@ class ModelUser
 
 	}
 
+	//récupère les taches de la liste $_GET["idListe"]
 	public static function getTaskOf(){
 		$gwTache = new GWtache();
 		$liste = ModelUser::getList();
 		return $gwTache->getTaskOf($_GET["idListe"]);
 	}
 
+	//ajoute une tache dans la liste d'id $_GET["idListe"]
 	public static function addTaskTo(){
 		$gwTache = new GWtache();
 		$liste = ModelUser::getList();
@@ -22,6 +24,7 @@ class ModelUser
 		$gwTache->insertTaskIn($titre, $description, $dateFin, $idListe, (isset($_POST["fait"]) && $_POST["fait"]) ? true : false);
 	}
 
+	//supprime la tache d'id $_GET["id"]
 	public static function removeTask(){
 		$gwTache = new GWtache();
 		if(!isset($_GET["id"]) || $_GET["id"] == NULL) throw new Exception("Il n'y a aucune tache spécifié.");
@@ -30,6 +33,7 @@ class ModelUser
 		$gwTache->deleteTask($id);
 	}
 
+	//récupère la tache d'id $_GET["id"]
 	public static function getTask(){
 		$gwTache = new GWtache();
 		$gwListe = new GWliste();
@@ -40,6 +44,7 @@ class ModelUser
 		return $tache;
 	}
 
+	//modifie la tache d'id $_GET["id"]
 	public static function editTask(){
 		$gwTache = new GWtache();
 		if(!isset($_GET["id"]) || $_GET["id"] == NULL) throw new Exception("Aucune tache n'est choisi");
@@ -54,12 +59,14 @@ class ModelUser
 		return $tache;
 	}
 
+	//récupère la liste d'id $_GET["idListe"]
 	public static function getList(){
 		$idListe = Validation::validateInt($_GET["idListe"]);
 		$liste = ModelUser::checkListById($idListe);
 		return $liste;
 	}
 
+	//créer une liste privé dans l'utilisateur $_SESSION["userid"]
 	public static function createPrivateList(){
 		if(isset($_SESSION["userid"]) and $_SESSION["userid"] == NULL) throw new Exception("Vous n'êtes pas connecer", 1);
 		$gwListe = new GWliste();
@@ -69,6 +76,7 @@ class ModelUser
 		return $gwListe->getLastIdInserted();
 	}
 
+	//supprime la liste privée d'id $_GET["idListe"]
 	public static function deletePrivateList(){
 		$gwListe = new GWliste();
 		$gwTache = new GWtache();
@@ -79,6 +87,7 @@ class ModelUser
 		$gwListe->deleteList($idListe);
 	}
 
+	//modifie la liste privée d'id $_GET["idListe"] mais peut aussi modifier une liste publique
 	public static function editPrivateList(){
 		$gwListe = new GWliste();
 		$liste = ModelUser::getList($_GET["idListe"]);
@@ -88,7 +97,7 @@ class ModelUser
 		return $liste;
 	}
 
-	/* Check list by ID permet de regarder si l'utilisateur est connecté pour la gestion des droits */
+	//Check list by ID permet de regarder si l'utilisateur est connecté pour la gestion des droits
 	public static function checkListById(int $idListe){
 		$gwListe = new GWliste();
 		if(!isset($idListe) || $idListe == NULL) throw new Exception("Il n'y a aucune liste cible.");
@@ -97,8 +106,7 @@ class ModelUser
 		return $liste;
 	}
 
-	/* Création d'un utilisateur avec validation des champs et hash du mdp */
-
+	//Création d'un utilisateur avec validation des champs et hash du mdp
 	public static function createAUser(){
 		$gwUser = new GWuser();
 		$mail = Validation::validateMail($_POST["mail"]);
@@ -109,9 +117,7 @@ class ModelUser
 		$gwUser->insertUser($username, $mail, $hash);
 	}
 
-	/* Verification des champs pour la connection utilisateur avec test du mdp on met l'id de l'utilisateur dans la session */
-
-
+	//Verification des champs pour la connection utilisateur avec test du mdp on met l'id de l'utilisateur dans la session
 	public static function logUser(){
 		$gwUser = new GWuser();
 		throw new Exception($_POST["mail"]);
@@ -122,8 +128,7 @@ class ModelUser
 		$_SESSION['userid'] = $utilisateur->get_id();
 	}
 
-	/* Renvoi des listes privées  */
-
+	//Renvoi des listes privées
 	public static function getPrivateList(){
 		if(!isset($_SESSION["userid"]) && $_SESSION["userid"] == NULL) throw new Exception("Vous n'êtes pas connecté.", 1);
 		$userid = Validation::validateInt($_SESSION["userid"]);
@@ -131,8 +136,7 @@ class ModelUser
 		return $gwListe->getListOf($userid);
 	}
 
-	/* Deconnexion de la session   */
-
+	//Deconnexion de la session
 	public static function logout(){
 		if (session_unset() == false) {
 			throw new Exception("Problème avec la fermeture de session !");

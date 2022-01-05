@@ -11,12 +11,14 @@ class ModelVisiteur
 		return $gw->getPublicList();
 	}
 
-	public static function getTaskOf(){ //récupère les taches de la liste $_GET["idListe"]
+	//récupère les taches de la liste $_GET["idListe"]
+	public static function getTaskOf(){
 		$gwTache = new GWtache();
 		$liste = ModelVisiteur::getList();
 		return $gwTache->getTaskOf($_GET["idListe"]);
 	}
 
+	//ajoute une tache dans la liste d'id $_GET["idListe"]
 	public static function addTaskTo(){ //ajoute une tache dans la liste d'id $_GET["idListe"]
 		$gwTache = new GWtache();
 		$liste = ModelVisiteur::getList();
@@ -27,7 +29,8 @@ class ModelVisiteur
 		$gwTache->insertTaskIn($titre, $description, $dateFin, $idListe, (isset($_POST["fait"]) && $_POST["fait"]) ? true : false);
 	}
 
-	public static function removeTask(){ //supprime la tache d'id $_GET["id"]
+	//supprime la tache d'id $_GET["id"]
+	public static function removeTask(){
 		$gwTache = new GWtache();
 		if(!isset($_GET["id"]) || $_GET["id"] == NULL) throw new Exception("Il n'y a aucune tache spécifié.");
 		$id = Validation::validateInt($_GET["id"]);
@@ -35,7 +38,8 @@ class ModelVisiteur
 		$gwTache->deleteTask($id);
 	}
 
-	public static function getTask(){ //récupère la tache d'id $_GET["id"]
+ 	//récupère la tache d'id $_GET["id"]
+	public static function getTask(){
 		$gwTache = new GWtache();
 		$gwListe = new GWliste();
 		if(!isset($_GET["id"]) || $_GET["id"] == NULL) throw new Exception("Il n'y a aucune tache spécifié.");
@@ -45,7 +49,8 @@ class ModelVisiteur
 		return $tache;
 	}
 
-	public static function editTask(){ //modifie la tache d'id $_GET["id"]
+	//modifie la tache d'id $_GET["id"]
+	public static function editTask(){
 		$gwTache = new GWtache();
 		if(!isset($_GET["id"]) || $_GET["id"] == NULL) throw new Exception("Aucune tache n'est choisi");
 		$id = Validation::validateInt($_GET["id"]);
@@ -59,13 +64,15 @@ class ModelVisiteur
 		return $tache;
 	}
 
-	public static function getList(){ //récupère la liste d'id $_GET["idListe"]
+	//récupère la liste d'id $_GET["idListe"]
+	public static function getList(){
 		$idListe = Validation::validateInt($_GET["idListe"]);
 		$liste = ModelVisiteur::checkListById($idListe);
 		return $liste;
 	}
 
-	public static function createPublicList(){ //créer une liste publique.
+	//créer une liste publique.
+	public static function createPublicList(){
 		$gwListe = new GWliste();
 		$titre = Validation::validateTitle($_POST["titre"]);
 		$description = Validation::validateString($_POST["description"]);
@@ -73,7 +80,8 @@ class ModelVisiteur
 		return $gwListe->getLastIdInserted();
 	}
 
-	public static function deletePublicList(){ //supprime la liste publique d'id $_GET["idListe"]
+	//supprime la liste publique d'id $_GET["idListe"]
+	public static function deletePublicList(){
 		$gwListe = new GWliste();
 		$gwTache = new GWtache();
 		if(!isset($_GET["idListe"]) || $_GET["idListe"] == NULL) throw new Exception("Il n'y a aucune liste cible.");
@@ -83,7 +91,8 @@ class ModelVisiteur
 		$gwListe->deleteList($idListe);
 	}
 
-	public static function editPublicList(){ //modifie la liste public d'id $_GET["idListe"]
+	//modifie la liste publique d'id $_GET["idListe"]
+	public static function editPublicList(){
 		$gwListe = new GWliste();
 		$liste = ModelVisiteur::checkListById($_GET["idListe"]);
 		$liste->set_titre(Validation::validateTitle($_POST["titre"]));
@@ -92,7 +101,8 @@ class ModelVisiteur
 		return $liste;
 	}
 
-	public static function checkListById(int $idListe){ //récupère la liste d'id $idListe, et on vérifie les droits
+	//récupère la liste d'id $idListe, et on vérifie les droits
+	public static function checkListById(int $idListe){
 		$gwListe = new GWliste();
 		if(!isset($idListe) || $idListe == NULL) throw new Exception("Il n'y a aucune liste cible.");
 		$liste = $gwListe->getList($idListe);
@@ -100,7 +110,8 @@ class ModelVisiteur
 		return $liste;
 	}
 
-	public static function createAUser(){ //créer un nouvel utilisateur
+	//créer un nouvel utilisateur
+	public static function createAUser(){
 		$gwUser = new GWuser();
 		$mail = Validation::validateMail($_POST["mail"]);
 		if($gwUser->getUser($mail) != NULL) throw new Exception("Email déjà utilisé", 1);
@@ -111,7 +122,8 @@ class ModelVisiteur
 		$gwUser->insertUser($username, $mail, $hash);
 	}
 
-	public static function logUser(){ //connect l'utilisateur
+	//connecte l'utilisateur
+	public static function logUser(){
 		$gwUser = new GWuser();
 		$mail = Validation::validateMail($_POST["mail"]);
 		$password = Validation::validatePassword($_POST["password"]);
