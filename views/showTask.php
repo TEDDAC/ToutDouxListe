@@ -4,11 +4,13 @@
 	<link rel="stylesheet" href="views/style.css">
     <title>Ma page</title>
 </head>
-<body>
+<body class="backform">
 	<?php require("views/header.php"); ?>
 	<div class="showTask">
-		<h2 class="taskTitle"><?= $liste->get_titre() ?></h2>
-		<p><?= $liste->get_description() ?></p>
+        <div class="listname">
+            <h2 class="taskTitle"><?= $liste->get_titre() ?></h2>
+    		<p><?= $liste->get_description() ?></p>
+        </div>
 		<table>
 	    <?php
 	    foreach($taches as $tache){

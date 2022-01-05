@@ -4,11 +4,11 @@
 	<link rel="stylesheet" href="views/style.css">
     <title><?= (isset($_GET["action"]) and $_GET["showPrivateList&"] == "showPrivateList&") ? "Liste privée" : "Home" ?></title>
 </head>
-<body>
+<body class="backform">
 	<?php require("views/header.php"); ?>
 
 	<div class="showList">
-		<h3><?= (isset($_GET["action"]) and $_GET["action"] == "showPrivateList") ? "Liste privée"  : "Liste Public"?></h3>
+		<h3><?= (isset($_GET["action"]) and $_GET["action"] == "showPrivateList") ? "Listes privées"  : "Listes Publiques"?></h3>
 	    <?php
 	    foreach($listes as $liste){
 		?>

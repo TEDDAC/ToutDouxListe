@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="views/style.css">
     <title>Aie !</title>
 </head>
-<body>
+<body class="backform">
 	<?php require("views/header.php"); ?>
     <div class="error">
         <h3>Aie !  :'(</h3>

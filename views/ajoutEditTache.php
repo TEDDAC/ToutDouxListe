@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="views/style.css">
     <title>Tâches</title>
 </head>
-<body>
+<body class="backform">
 	<?php require("views/header.php"); ?>
     <div class="taskform">
         <form class="formtask" action="index.php?action=<?= (isset($_SESSION["userid"]) && $_SESSION["userid"] != NULL) ? "pv":"" ?><?= isset($tache) ? "updateTask" : "addTask" ?>&<?= isset($tache) ? "id=".$tache->get_id() : "idListe=".$_GET["idListe"] ?>" method="POST">

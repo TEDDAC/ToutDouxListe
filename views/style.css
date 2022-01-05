@@ -1,12 +1,18 @@
+@font-face {
+	font-family: 'Nunito', sans-serif;
+	src: url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+}
 body{
 	margin: auto;
+	font-family: 'Nunito', sans-serif;
+
 }
 
 header{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	background-color: rgb(230, 230, 230);
+	background-color: white;
 }
 
 nav{
@@ -50,5 +56,68 @@ header + div{
 
 .taskTitle{
 	font-weight: bold;
-	font-family: sans-serif;
+	font-family: 'Nunito', sans-serif;
+}
+
+.div_signup{
+	width: 250px;
+	height: 300px;
+	margin: 0 auto;
+	margin-top: 50px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.div_login{
+	width: 250px;
+	height: 300px;
+	margin: 0 auto;
+	margin-top: 50px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.taskform{
+	width: 500px;
+	height: 300px;
+	margin: 0 auto;
+	margin-top: 50px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.backform{
+	background-color: #8EC5FC;
+	background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+}
+
+.showList{
+	margin: 30px;
+	background-color: white;
+	border-radius: 10px;
+	padding: 30px;
+}
+
+.showTask{
+	margin: 30px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.listname{
+	border: solid;
+	border-color: grey;
+	border-radius: 5px;
+	width: 500px;
+	margin: auto;
+	padding: 30px;
+}
+
+.error{
+	width: 250px;
+	height: 300px;
+	margin: 0 auto;
+	margin-top: 50px;
+	background-color: white;
+	border-radius: 10px;
 }

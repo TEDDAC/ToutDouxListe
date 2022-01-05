@@ -6,10 +6,10 @@
 	<link rel="stylesheet" href="views/style.css">
     <title>Login - Sing Up</title>
 </head>
-<body>
+<body class="backform">
 	<?php require("views/header.php"); ?>
-    <div class="div_signup">
-        <h3>Log in to ToutDouxListe</h3>
+    <div class="div_login">
+        <h3>Create Account</h3>
         <form class="form_log" action="index.php?action=login" method="POST">
             <p>
                 <input type="email" name="mail" placeholder="Your email" required autofocus>
@@ -20,7 +20,7 @@
             <input type="submit" value="Se connecter" name="subbutton">
         </form>
         <p>
-            Don't have an account?
+            Don't have an account ?
             <a href="index.php?action=signup">Sign up</a>
         </p>
     </div>

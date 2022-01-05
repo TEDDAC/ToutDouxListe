@@ -6,7 +6,7 @@
     <title>Login - Sing Up</title>
 </head>
 
-<body>
+<body class="backform">
 	<?php require("header.php"); ?>
     <div class="div_signup">
         <h3>Want to register on ToutDouxListe?</h3>
@@ -28,7 +28,7 @@
         </form>
         <p>
             Already have an account?
-            <a href="index.php?action=login">Log in</a>
+            <a href="index.php?action=formlog">Log in</a>
         </p>
     </div>
 </body>
